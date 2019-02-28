@@ -1,0 +1,335 @@
+
+
+{{--@extends("layouts.machine")--}}
+
+{{--@section("js")--}}
+
+
+{{--@endsection--}}
+
+{{--@section("content")--}}
+    {{--//&#x9f3;--}}
+    {{--<div class="container-fluid">--}}
+        {{--<div class="row">--}}
+            {{--@if(count($floors) > 0)--}}
+                {{--@foreach($floors as $floor)--}}
+                   {{----}}
+                    {{--<div class="col-md-12">--}}
+                        {{--<div class="alert alert-dismissible alert-info text-center">--}}
+                            {{--<h3>--}}
+                                {{--<strong>Floor No:</strong>{{$fNo=$floor->floor}}--}}
+                            {{--</h3>--}}
+                        {{--</div>--}}
+                        {{--<div class="row">--}}
+                            {{--@for($block=0,$line=1,$switches=1;$block<$floor->rows/4;$block++)--}}
+                                {{--<div class="col-md-6">--}}
+                                    {{--<div class="row">--}}
+                                        {{--@for($i=0;$i<4;$i++,$line++)--}}
+                                            {{--@php if($line>$floor->rows)break; @endphp--}}
+                                                {{--<div class="col-lg-3 col-md-3 col-sm-3">--}}
+                                                    {{--<div class="row">--}}
+                                                        {{--<div class="col-md-12">--}}
+                                                            {{--<div class="alert alert-dismissible alert-warning text-center">--}}
+                                                                {{--<span>L-{{$line}}</span>--}}
+                                                            {{--</div>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                    {{--<div class="machineBlock">--}}
+        {{----}}
+                                                        {{--<div class="row">--}}
+                                                            {{--@for($table=1;$table<=$floor->machinePerRow;$table++,$switches++)--}}
+                                                            {{--<div class="col-md-12">--}}
+                                                                {{--<div class="block btn btn-success pull-left"   id="{{$switches}}-{{$fNo}}">{{$switches}}</div>--}}
+                                                                {{--<div class="block btn btn-success pull-right"  id="{{$switches}}-{{$fNo}}">{{$switches}}</div>--}}
+                                                            {{--</div>--}}
+                                                            {{--@endfor--}}
+                                                        {{--</div>--}}
+        {{----}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                        {{--@endfor--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--@endfor--}}
+
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--@endforeach--}}
+            {{--@endif--}}
+        {{--</div>--}}
+    {{--</div>--}}
+
+{{--@endsection--}}
+
+
+
+{{--@extends("layouts.machine")--}}
+
+{{--@section("js")--}}
+{{----}}
+
+{{--@endsection--}}
+
+{{--@section("content")--}}
+{{--//&#x9f3;--}}
+{{--<div class="container-fluid">--}}
+{{--<div class="row">--}}
+{{--@if(count($floors) > 0)--}}
+{{--@foreach($floors as $floor)--}}
+{{--<div class="col-md-12">--}}
+{{--<div class="alert alert-dismissible alert-info text-center">--}}
+{{--<h3>--}}
+{{--<strong>Floor No:</strong>{{$florId = $floor->floor}}--}}
+{{--</h3>--}}
+{{--</div>--}}
+{{--<div class="row">--}}
+{{--@if(!is_null($rows = $floor->rows))--}}
+{{--@php dd(12%$rows) @endphp--}}
+{{--@if(12%$rows != 0)--}}
+{{--@if($rows >4)--}}
+{{--@for($n=0,$switch=0;$n<round($rows/4);$n++)--}}
+{{--<div class="col-md-6">--}}
+{{--<div class="row">--}}
+{{--@for($i=4*$n+1,$count=1;$i<=$rows;$i++,$count++)--}}
+{{--<div class="col-lg-3 col-md-3 col-sm-3">--}}
+{{--<div class="col-lg-{{12/($rows/2)>3?3:$col = round(12/($rows/2))}} col-md-{{12/($rows/2)>3?3:$col}} col-sm-{{12/($rows/2)>3?3:$col}}">--}}
+{{--<div class="row">--}}
+{{--<div class="col-md-12">--}}
+{{--<div class="alert alert-dismissible alert-warning text-center">--}}
+{{--<span>L-{{$i}}</span>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--<div class="machineBlock">--}}
+{{--@for($j=1;$j<=$floor->machinePerRow/2;$j++)--}}
+{{--<div class="row">--}}
+{{--<div class="col-md-12">--}}
+{{--<div class="block btn btn-{{machine_status(++$switch,$floor->id)}} pull-left" {{switch_status($switch,$floor->id)}}  id="{{$switch}}-{{$florId}}">{{$switch}}</div>--}}
+{{--<div class="block btn btn-{{machine_status(++$switch,$floor->id)}} pull-right" {{switch_status($switch,$floor->id)}} id="{{$switch}}-{{$florId}}">{{$switch}}</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endfor--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@php if($count==4){break;} @endphp--}}
+{{--@endfor--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endfor--}}
+{{--@else--}}
+{{--<div class="col-md-6">--}}
+{{--<div class="row">--}}
+{{--@for($i=1,$switch=0;$i<=$rows;$i++)--}}
+{{--<div class="col-lg-3 col-md-3 col-sm-3">--}}
+{{--<div class="col-lg-{{12/($rows/2)>3?3:$col = round(12/($rows/2))}} col-md-{{12/($rows/2)>3?3:$col}} col-sm-{{12/($rows/2)>3?3:$col}}">--}}
+{{--<div class="row">--}}
+{{--<div class="col-md-12">--}}
+{{--<div class="alert alert-dismissible alert-warning text-center">--}}
+{{--<span>L-{{$i}}</span>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--<div class="machineBlock">--}}
+{{--@for($j=1;$j<=$floor->machinePerRow/2;$j++)--}}
+{{--<div class="row">--}}
+{{--<div class="col-md-12">--}}
+{{--<div class="block btn btn-{{machine_status(++$switch,$floor->id)}} pull-left" {{switch_status($switch,$floor->id)}}  id="{{$switch}}-{{$florId}}">{{$switch}}</div>--}}
+{{--<div class="block btn btn-{{machine_status(++$switch,$floor->id)}} pull-right" {{switch_status($switch,$floor->id)}} id="{{$switch}}-{{$florId}}">{{$switch}}</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endfor--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endfor--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--<div class="col-md-6">--}}
+{{--<div class="row">--}}
+{{--@for($i;$i<=$rows;$i++)--}}
+{{--<div class="col-lg-3 col-md-3 col-sm-3">--}}
+{{--<div class="col-lg-{{12/($rows/2)>3?3:$col = round(12/($rows/2))}} col-md-{{12/($rows/2)>3?3:$col}} col-sm-{{12/($rows/2)>3?3:$col}}">--}}
+{{--<div class="row">--}}
+{{--<div class="col-md-12">--}}
+{{--<div class="alert alert-dismissible alert-warning text-center">--}}
+{{--<span>L-{{$i}}</span>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--<div class="machineBlock">--}}
+{{--@for($j=1;$j<=$floor->machinePerRow/2;$j++)--}}
+{{--<div class="row">--}}
+{{--<div class="col-md-12">--}}
+{{--<div class="block btn btn-{{machine_status(++$switch,$floor->id)}} pull-left" {{switch_status($switch,$floor->id)}}  id="{{$switch}}-{{$florId}}">{{$switch}}</div>--}}
+{{--<div class="block btn btn-{{machine_status(++$switch,$floor->id)}} pull-right" {{switch_status($switch,$floor->id)}} id="{{$switch}}-{{$florId}}">{{$switch}}</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endfor--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endfor--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--@endif--}}
+{{----}}
+{{--@endif--}}
+
+{{--</div>--}}
+{{--</div>--}}
+{{--@endforeach--}}
+{{--@endif--}}
+{{--</div>--}}
+{{--</div>--}}
+
+{{--@endsection--}}
+
+
+
+
+
+
+@extends("layouts.machine")
+
+@section("js")
+
+
+@endsection
+
+@section("content")
+    {{--//&#x9f3;--}}
+    <div class="container-fluid">
+        <div class="row">
+            @if(count($floors) > 0)
+                @foreach($floors as $floor)
+                    @php
+                        $machinePerRow = $floor->machinePerRow;
+                        $lineNo = 1;
+                        $totalMachine = 0;
+                    @endphp
+
+                    <div class="col-md-12">
+                        <div class="alert alert-dismissible alert-info text-center">
+                            <h3>
+                                <strong>Floor No:</strong>{{$fNo=$floor->floor}}
+                            </h3>
+                        </div>
+                        <div class="row">
+                            {{--@php dd($floor->switches->chunk(80))  @endphp--}}
+                            @foreach($floor->switches->chunk($machinePerRow*4) as $blocks)
+                                {{--                                @php dd($blocks->chunk($machinePerRow))  @endphp--}}
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        @foreach($blocks->chunk($machinePerRow) as $lines)
+                                            {{--@php dd($lines->chunk(2))  @endphp--}}
+                                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="alert alert-dismissible alert-warning text-center">
+                                                            <span>L-{{$lineNo++}}</span>
+                                                            {{--<span>L-{{$line}}</span>--}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="machineBlock">
+                                                    @foreach($lines->chunk(2) as $machines)
+{{--                                                        @php dd($machines)  @endphp--}}
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            @foreach($machines as $machine)
+{{--                                                                @php dd($machine)  @endphp--}}
+                                                            <div class="block btn btn-{{$machine->status==0?'danger':'success'}} pull-{{++$totalMachine%2==0?'right':'left'}}" id="{{$totalMachine}}-{{$fNo}}">{{$totalMachine}}</div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                    @endforeach
+
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+    </div>
+
+@endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,126 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Floor;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+use App\MController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
+class MControllersController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index(Request $request)
+    {
+        $keyword = $request->get('search');
+        $perPage = 25;
+
+        if (!empty($keyword)) {
+            $mcontrollers = MController::where('floor', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $mcontrollers = MController::latest()->paginate($perPage);
+        }
+
+        return view('admin.m-controllers.index', compact('mcontrollers'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        $floors = Floor::pluck('title','id')->all();
+
+        return view('admin.m-controllers.create',compact('floors'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function store(Request $request)
+    {
+        
+        $requestData = $request->all();
+        $serial = Str::random(10);
+        $requestData['serial'] = $serial;
+
+        MController::create($requestData);
+
+        return redirect('admin/m-controllers')->with('flash_message', 'MController added!');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
+    {
+        $mcontroller = MController::findOrFail($id);
+
+        return view('admin.m-controllers.show', compact('mcontroller'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function edit($id)
+    {
+        $mcontroller = MController::findOrFail($id);
+
+        return view('admin.m-controllers.edit', compact('mcontroller'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param  int  $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(Request $request, $id)
+    {
+        
+        $requestData = $request->all();
+        
+        $mcontroller = MController::findOrFail($id);
+        $mcontroller->update($requestData);
+
+        return redirect('admin/m-controllers')->with('flash_message', 'MController updated!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function destroy($id)
+    {
+        MController::destroy($id);
+
+        return redirect('admin/m-controllers')->with('flash_message', 'MController deleted!');
+    }
+}
