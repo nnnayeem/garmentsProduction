@@ -11,7 +11,7 @@ use App\TargetDetails;
 use App\TargetHourlyDetail;
 use Carbon\Carbon;
 
-class CountHourlyProductionHandler
+class CountHourlyProductionHandler implements ShouldQueue
 {
     /**
      * Create the event listener.

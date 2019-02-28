@@ -8,7 +8,7 @@ use App\Target;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CountProductionHandle
+class CountProductionHandle implements ShouldQueue
 {
     /**
      * Create the event listener.
