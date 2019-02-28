@@ -11,7 +11,7 @@
 
     <!-- Bootstrap -->
     {{--<link href="{{asset('css/b-2.css')}}" rel="stylesheet">--}}
-    <link href="{{asset('css/main.css')}}" rel="stylesheet">
+    <link href="{{asset('css/front.css')}}" rel="stylesheet">
     {{--<link href="{{asset('css/machineMain.css')}}" rel="stylesheet">--}}
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

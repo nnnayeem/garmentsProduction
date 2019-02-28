@@ -1,0 +1,12 @@
+.machine{
+    width: 50%;
+    margin-bottom:30px ;
+}
+.block {
+    width: 45%;
+    margin-top: 8%;
+}
+.machineBlock{
+    margin-bottom:50%;
+    padding:0 7%;
+}

@@ -14,7 +14,6 @@ class ProductionController extends Controller
             ->whereDate('day',date('Y-m-d'))
             ->where('floor_id',$floor)
             ->where('line',$line)->first();
-//        $target = Target::with(['order','order.buyer','targetHourlyDetails'])->whereDate('day',date('Y-m-d'))->where('floor_id',$floor)->where('line',$line)->first();
         if(!empty($target))
             return view('production',compact('target'));
         return abort(404);
