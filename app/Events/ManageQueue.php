@@ -27,7 +27,6 @@ class ManageQueue
 //        $schedule->command('report:hourly')->hourly();
         $jobs = DB::table('jobs')->select('id')->get();
         if(count($jobs) > 0){
-            //Artisan::call('queue:work',['--stop-when-empty'=>true]);
              Artisan::call('queue:work',['--tries'=>3,'--stop-when-empty'=>true]);
         }
         /*else{
