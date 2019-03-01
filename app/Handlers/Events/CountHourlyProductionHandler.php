@@ -35,6 +35,8 @@ class CountHourlyProductionHandler implements ShouldQueue
         $last = $event->lastHour->format('H');
         $current = $now->format('H');
 
+        dd($last);
+
         $lastTime = Carbon::createFromTime($last, 0, 0)->format('H:m:s');
         $currentTime = Carbon::createFromTime($current, 0, 0, 'Asia/Dhaka')->format('H:m:s');
 
