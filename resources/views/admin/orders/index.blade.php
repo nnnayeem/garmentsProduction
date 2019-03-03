@@ -45,7 +45,7 @@
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>#</th><th>Name</th</th><th>Master LC</th><th>Buyer Id</th><th>Qty</th><th>Target</th><th>Start Date</th><th>Created at</th><th>Actions</th>
+                                <th>#</th><th>Name</th</th><th>Master LC</th><th>Buyer Id</th><th>Qty</th><th>Completed</th><th>Target</th><th>Start Date</th><th>Created at</th><th>Actions</th>
                             </tr>
                             </thead>
                             <tbody valign = "middle">
@@ -56,6 +56,7 @@
                                     <td>{{ $item->master_lc }}</td>
                                     <td>{{ $item->buyer?$item->buyer->name:'<span class="label label-danger">Empty</span>' }}</td>
                                     <td>{{ $item->qty }}</td>
+                                    <td>{{ $item->production }}</td>
                                     <td>{{ $item->ending_date }}</td>
                                     <td>{{$item->start_date}}</td>
                                     <td>{{$item->created_at}}</td>

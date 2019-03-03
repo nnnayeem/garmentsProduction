@@ -1,0 +1,41 @@
+[33mcommit 7b785e51afd5da049080a7f8f81f65736b1c1e54[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: nnnayeem <gdnayeem1996@gmail.com>
+Date:   Sat Mar 2 00:15:51 2019 +0600
+
+    Updated LoginController site alredy uploaded to server artisan working
+
+[33mcommit ee22740067a72c438e4e940673cacc0fcafc1a75[m
+Author: nnnayeem <gdnayeem1996@gmail.com>
+Date:   Fri Mar 1 11:40:03 2019 +0600
+
+    Worked on Task Scheduling everything running perfectly. Php artisan still running
+
+[33mcommit 722019770287dbbdfe05dd85105b356846255c16[m
+Author: nnnayeem <gdnayeem1996@gmail.com>
+Date:   Fri Mar 1 04:13:37 2019 +0600
+
+    Added Custom Console && Events everything running wiht no error
+
+[33mcommit 836e0de26f9b2a70008aa92c2a8a91622d178bf4[m
+Author: nnnayeem <gdnayeem1996@gmail.com>
+Date:   Fri Mar 1 02:06:53 2019 +0600
+
+    Installed toastr everything running perfectly. running php artisan too.
+
+[33mcommit 68d4351d82565c1b70b741792532797817e34608[m
+Author: nnnayeem <gdnayeem1996@gmail.com>
+Date:   Fri Mar 1 01:47:02 2019 +0600
+
+    added lumen created event not broadcasting
+
+[33mcommit 3f5ea31dab9e7e912fe7d6a7e247e53e11a9b751[m
+Author: nnnayeem <gdnayeem1996@gmail.com>
+Date:   Thu Feb 28 12:47:06 2019 +0600
+
+    Added Traits To UserModel DB Seeded
+
+[33mcommit 427eba01f53960600ce4525b7da60eb41581c7f2[m
+Author: nnnayeem <gdnayeem1996@gmail.com>
+Date:   Thu Feb 28 11:58:17 2019 +0600
+
+    first commit

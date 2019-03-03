@@ -40,6 +40,6 @@ class BroadcastHourlyReport implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return ['production-'.$this->floor.'-'.$this->line];
     }
 }

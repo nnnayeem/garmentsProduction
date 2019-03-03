@@ -2,6 +2,7 @@
 
 namespace App\Handlers\Events;
 
+use App\Events\BroadcastHourlyReport;
 use App\Events\CountHourlyProduction;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,6 +12,7 @@ use App\TargetDetails;
 use App\TargetHourlyDetail;
 use Carbon\Carbon;
 
+// class CountHourlyProductionHandler
 class CountHourlyProductionHandler implements ShouldQueue
 {
     /**
@@ -34,8 +36,6 @@ class CountHourlyProductionHandler implements ShouldQueue
         $now = $event->now;
         $last = $event->lastHour->format('H');
         $current = $now->format('H');
-
-        dd($last);
 
         $lastTime = Carbon::createFromTime($last, 0, 0)->format('H:m:s');
         $currentTime = Carbon::createFromTime($current, 0, 0, 'Asia/Dhaka')->format('H:m:s');
