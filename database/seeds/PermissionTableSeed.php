@@ -74,5 +74,11 @@ class PermissionTableSeed extends Seeder
         Permission::create(['name'=>'create buyer','guard_name'=>'web']);
         Permission::create(['name'=>'edit buyer','guard_name'=>'web']);
         Permission::create(['name'=>'delete buyer','guard_name'=>'web']);
+
+        Permission::create(['name'=>'view general-store','guard_name'=>'web']);
+        Permission::create(['name'=>'edit general-store','guard_name'=>'web']);
+        Permission::create(['name'=>'request accessories','guard_name'=>'web']);
+        Permission::create(['name'=>'deliver accessories','guard_name'=>'web']);
+        Permission::create(['name'=>'delete general-store','guard_name'=>'web']);
     }
 }

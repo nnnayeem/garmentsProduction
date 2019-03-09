@@ -115,7 +115,7 @@
             <div class="col-xs-12">
                 <div class="box box-warning">
                     <div class="box-header">
-                        <a href="/admin/accessorieses/{{$orderId}}/create" class="btn btn-flat btn-success">Add accessorieses</a>
+                        <a href="/admin/accessorieses/order/{{$orderId}}/create" class="btn btn-flat btn-success">Add accessorieses</a>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -145,10 +145,10 @@
                                     <td>{{ $item->stored }}</td>
                                     <td>{{ $item->delivered }}</td>
                                     <td>
-                                        <a href="{{ url('/admin/accessorieses/' . $orderId.'/'. $item->id.'/show') }}" title="View Accessoriese"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                        <a href="{{ url('/admin/accessorieses/' . $orderId.'/'. $item->id. '/edit') }}" title="Edit Accessoriese"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-                                        <a href="{{ url('/admin/accessorieses/store/' .  $item->id.'/'.$orderId) }}" title="Store Accessoriese"><button class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Input Accessories</button></a>
-                                        {!! Form::open(['method'=>'DELETE','url' => ['/admin/accessorieses', $orderId,$item->id],'style' => 'display:inline']) !!}
+                                        <a href="{{ url('/admin/accessorieses/order/' . $orderId.'/acs/'. $item->id.'/show') }}" title="View Accessoriese"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                        <a href="{{ url('/admin/accessorieses/order/' . $orderId.'/acs/'. $item->id. '/edit') }}" title="Edit Accessoriese"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                        <a href="{{ url('/admin/accessorieses/' .  $item->id.'/order/'.$orderId . '/store') }}" title="Store Accessoriese"><button class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Input Accessories</button></a>
+                                        {!! Form::open(['method'=>'DELETE','url' => ['/admin/accessorieses/order/acs/destroy', $orderId,$item->id],'style' => 'display:inline']) !!}
                                         {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array('type' => 'submit','class' => 'btn btn-danger btn-sm','title' => 'Delete Accessoriese','onclick'=>'return confirm("Confirm delete?")')) !!}
                                         {!! Form::close() !!}
                                     </td>

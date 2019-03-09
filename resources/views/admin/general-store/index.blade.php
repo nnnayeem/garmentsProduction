@@ -39,7 +39,7 @@
             <div class="col-xs-12">
                 <div class="box box-warning">
                     <div class="box-header">
-                        <a href="/admin/general-store/create" class="btn btn-flat btn-success">Add general-store</a>
+                        <a href="/admin/general-store/create" class="btn btn-flat btn-success">Request Accessories</a>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">

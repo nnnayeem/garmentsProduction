@@ -137,14 +137,6 @@ class AccessoriesesController extends Controller
         if($type == 0){
             DB::table('accessorieses')->where('id',$id)->increment('stored',$p['qty']);
         }
-        /*elseif ($type == 1){
-            $prevStored = $data->stored;
-            if($p['qty']>$prevStored){
-                return redirect(route('order.accessories',$p['orderId']));
-            }
-            DB::table('accessorieses')->where('id',$id)->increment('delivered',$p['qty']);
-            DB::table('accessorieses')->where('id',$id)->decrement('stored',$p['qty']);
-        }*/
         return redirect(route('order.accessories',$p['orderId']));
     }
 

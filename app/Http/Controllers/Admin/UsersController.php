@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Validator;
 
 class UsersController extends Controller
@@ -37,7 +38,8 @@ class UsersController extends Controller
     public function create()
     {
         $permissions = Permission::pluck('name','id');
-        return view('Admin.users.create',compact('permissions'));
+        $roles = Role::pluck('name','id');
+        return view('admin.users.create',compact('permissions','roles'));
 
     }
 
@@ -55,7 +57,8 @@ class UsersController extends Controller
         $rules = [
             'email'=>'required|unique:users|max:191|email',
             'name'=>'required|max:191',
-            'permission'=>'required|min:1',
+            'role'=>'required|min:1',
+            // 'permission'=>'required|min:1',
             'password'=>'required|min:6|confirmed',
 
         ];
@@ -63,8 +66,11 @@ class UsersController extends Controller
         $requestData['password'] = bcrypt($requestData['password']);
         
         $user = User::create($requestData);
-        if(!empty($requestData['permission'])){
+        /*if(!empty($requestData['permission'])){
             $user->givePermissionTo($requestData['permission']);
+        }*/
+        if(!empty($requestData['role'])){
+            $user->assignRole($requestData['role']);
         }
 
         return redirect('admin/users')->with('flash_message', 'User added!');
@@ -82,7 +88,7 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $permissions = Permission::pluck('name','id');
 
-        return view('Admin.users.show', compact('user'));
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -95,10 +101,12 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $permissions = Permission::pluck('name','id');
-        $assignedPermissions = $user->getAllPermissions();
+        // $permissions = Permission::pluck('name','id');
+        $roles = Role::pluck('name','id');
+        // $assignedPermissions = $user->getAllPermissions();
+        $assignedRoles = $user->roles;
 
-        return view('Admin.users.edit', compact('user','permissions','assignedPermissions'));
+        return view('admin.users.edit', compact('user','permissions','assignedPermissions','roles','assignedRoles'));
     }
 
     /**
@@ -116,7 +124,8 @@ class UsersController extends Controller
         $rules = [
 
             'name'=>'required|max:191',
-            'permission'=>'required|min:1',
+            'role'=>'required|min:1',
+            // 'permission'=>'required|min:1',
 
         ];
         Validator::make($requestData,$rules)->validate();
@@ -129,8 +138,11 @@ class UsersController extends Controller
         
         $user = User::findOrFail($id);
         $user->update($requestData);
-        if(count($requestData['permission'])>0){
-            $user->syncPermissions($requestData['permission']);
+        // if(count($requestData['permission'])>0){
+        //     $user->syncPermissions($requestData['permission']);
+        // }
+        if(count($requestData['role'])>0){
+            $user->syncRoles($requestData['role']);
         }
 
 

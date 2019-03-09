@@ -57,19 +57,10 @@
                                         <td>{{ $loop->iteration or $item->id }}</td>
                                         <td>{{ $item->name }}</td><td>{{ $item->buyer_id }}</td><td>{{ $item->qty }}</td><td>{{ $item->ending_date }}</td>
                                         <td>
-                                            <a href="{{ url('/admin/accessorieses/' . $item->id) }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Accessories</button></a>
+                                            <a href="{{ url('/admin/accessorieses/' . $item->id . '/order') }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Accessories</button></a>
                                             <a href="{{ url('/admin/orders/' . $item->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-                                            {!! Form::open([
-                                                'method'=>'DELETE',
-                                                'url' => ['/admin/orders', $item->id],
-                                                'style' => 'display:inline'
-                                            ]) !!}
-                                            {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
-                                                    'type' => 'submit',
-                                                    'class' => 'btn btn-danger btn-sm',
-                                                    'title' => 'Delete Order',
-                                                    'onclick'=>'return confirm("Confirm delete?")'
-                                            )) !!}
+                                            {!! Form::open(['method'=>'DELETE','url' => ['/admin/orders', $item->id],'style' => 'display:inline']) !!}
+                                            {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array('type' => 'submit','class' => 'btn btn-danger btn-sm','title' => 'Delete Order','onclick'=>'return confirm("Confirm delete?")')) !!}
                                             {!! Form::close() !!}
                                         </td>
                                     </tr>

@@ -102,6 +102,24 @@
                     <li{!! Request::is('admin/m-controllers/create')?' class="active"':'' !!}><a href="/admin/floors/create"><i class="fa  fa-user-plus"></i>Add Floors</a></li>
                 </ul>
             </li>
+            <li class="{{Request::is('admin/floors*')?'active ':''}}treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>Targets</span>
+                    <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li{!! Request::is('admin/targets')?' class="active"':'' !!}><a href="/admin/floors"><i class="fa fa-users"></i> Manage Targets</a></li>
+                    <li{!! Request::is('admin/targets/create')?' class="active"':'' !!}><a href="/admin/floors/create"><i class="fa  fa-user-plus"></i>Add Targets</a></li>
+                </ul>
+            </li>
+            <li {!! Request::is('admin')?'class="active"':'' !!}>
+                <a href="/admin/production">
+                    <i class="fa fa-th"></i> <span>Production</span>
+                </a>
+            </li>
 
             <li class="header">Store</li>
             <li class="{{Request::is('admin/store*')?'active ':''}}treeview">

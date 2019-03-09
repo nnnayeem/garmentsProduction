@@ -16,25 +16,39 @@ class AccessoriesMiddleware
      */
     public function handle($request, Closure $next)
     {
+        
         $user = Auth::user();
 
-        if($request->is('admin/accessorieses/*')){
+        if($request->is('admin/accessorieses/*/order')){
             if($request->isMethod('get')){
                 if(!$user->can('view accessories'))abort(401);
             }
-        }elseif($request->is('admin/accessorieses/*/create')){
+        }
+
+        if($request->is('admin/accessorieses/order/*/create')){
             if(!$user->can('create accessories'))abort(401);
-        }elseif($request->is('admin/accessorieses/*/*/edit')){
+        }
+
+        if($request->is('admin/accessorieses/order/*/acs/*/edit')){
             if(!$user->can('edit accessories'))abort(401);
-        }elseif($request->is('admin/accessorieses/*/*/show')){
+        }
+
+        if($request->is('admin/accessorieses/order/*/acs/*/show')){
             if(!$user->can('show accessories'))abort(401);
-        }elseif($request->is('admin/accessorieses/*/*')){
+        }
+        
+        if($request->is('admin/accessorieses/order/*/acs/*/update')){
             if($request->isMethod('post')){
                 if(!$user->can('update accessories'))abort(401);
             }
-        }elseif($request->is('admin/accessorieses/store/*/*')){
+        }
+
+        if($request->is('admin/accessorieses/*/order/*/store')){
             if(!$user->can('input accessories'))abort(401);
-        }elseif($request->is('admin/accessorieses/store/*')){
+        }
+
+        if($request->is('admin/accessorieses/order/*/store')){
+
             if($request->isMethod('post'))
                 if(!$user->can('input accessories'))abort(401);
             else

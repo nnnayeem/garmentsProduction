@@ -36,6 +36,9 @@ class Target extends Model
     public function targetHourlyDetails(){
         return $this->hasMany('App\TargetHourlyDetail','target_id');
     }
+    public function floor(){
+        return $this->belongsTo('App\floor','floor_id');
+    }
 
     
 }

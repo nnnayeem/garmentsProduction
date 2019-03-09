@@ -33,11 +33,11 @@
 
 @section('main')
     <section class="content-header">
-        <h1> Edit user #{{ $user->id }}</h1>
+        <h1>Role {{ $role->id }}</h1>
         <ol class="breadcrumb">
             <li><a href="/admin/"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{{route("users.index")}}">users</a></li>
-            <li class="active">Edit users</li>
+            <li><a href="{{route("roles.index")}}">roles</a></li>
+            <li class="active">Show roles</li>
         </ol>
     </section>
 
@@ -70,38 +70,33 @@
                             </ul>
                         @endif
 
-                      {!! Form::model($user, [
-                          'method' => 'PATCH',
-                          'url' => ['/admin/users', $user->id],
-                          'class' => 'form-horizontal',
-                          'files' => true
-                      ]) !!}
+                       <a href="{{ url('/admin/roles') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                           <a href="{{ url('/admin/roles/' . $role->id . '/edit') }}" title="Edit Role"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                           {!! Form::open([
+                               'method'=>'DELETE',
+                               'url' => ['admin/roles', $role->id],
+                               'style' => 'display:inline'
+                           ]) !!}
+                               {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
+                                       'type' => 'submit',
+                                       'class' => 'btn btn-danger btn-sm',
+                                       'title' => 'Delete Role',
+                                       'onclick'=>'return confirm("Confirm delete?")'
+                               ))!!}
+                           {!! Form::close() !!}
+                           <br/>
+                           <br/>
 
-                             <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                                 {!! Form::label('name', 'Name', ['class' => 'col-md-4 control-label']) !!}
-                                 <div class="col-md-6">
-                                     {!! Form::text('name', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
-                                     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
-                                 </div>
-                             </div>
-                            
-                             <div class="form-group {{ $errors->has('role') ? 'has-error' : ''}}">
-                                {!! Form::label('role', 'Role', ['class' => 'col-md-4 control-label']) !!}
-                                <div class="col-md-6">
-                                    {!! Form::select('role[]', $roles, $assignedRoles,  ('' == 'required') ? ['class' => 'form-control', 'required' => 'required','multiple','id'=>'role'] : ['class' => 'form-control','multiple','id'=>'role']) !!}
-                                    {!! $errors->first('role', '<p class="help-block">:message</p>') !!}
-                                </div>
-                            </div>
-
-                             <div class="form-group">
-                                 <div class="col-md-offset-4 col-md-4">
-                                     {!! Form::submit(isset($submitButtonText) ? $submitButtonText : 'Update', ['class' => 'btn btn-primary']) !!}
-                                 </div>
-                             </div>
-
-
-                             {!! Form::close() !!}
-
+                           <div class="table-responsive">
+                               <table class="table table-borderless">
+                                   <tbody>
+                                       <tr>
+                                           <th>ID</th><td>{{ $role->id }}</td>
+                                       </tr>
+                                       <tr><th> Name </th><td> {{ $role->name }} </td></tr>
+                                   </tbody>
+                               </table>
+                           </div>
 
                     </div>
                     <!-- /.col -->
@@ -120,25 +115,15 @@
 @endsection
 
 @section('script')
-    !-- jQuery 3 -->
-    <script src="{{asset('bower_resources/jquery/dist/jquery.min.js')}}"></script>
-    <!-- Bootstrap 3.3.7 -->
-    <script src="{{asset('bower_resources/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-
-
-    <script src="{{asset('bower_resources/select2/dist/js/select2.full.js')}}"></script>
     <!-- Slimscroll -->
     <script src="{{asset('bower_resources/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 
     <script src="{{asset('bower_resources/fastclick/lib/fastclick.js')}}"></script>
 
     <script src="{{asset('bower_resources/admin-lte/dist/js/adminlte.min.js')}}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{asset('bower_resources/admin-lte/dist/js/demo.js')}}"></script>
-
-    <script>
-        $("#permission,#role").select2();
-    </script>
 
 @endsection
+
+
+
 

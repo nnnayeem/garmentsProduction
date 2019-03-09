@@ -48,6 +48,7 @@ Route::get("/test/{id}","Admin\\MachinesController@testing");
 
 Route::middleware(['auth'])->group(function(){
     Route::prefix('/admin')->group(function () {
+        Route::resource('/roles','RoleController');
         Route::get('/profile','ProfileController@AdminProfile');
         Route::PATCH('/profile/{user_id}','ProfileController@UpdateAdminProfile');
         Route::PATCH('/profile/{user_id}/password','ProfileController@VendorPassword');
@@ -74,20 +75,22 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/machine-history','Admin\\HistoryController@SortPlatform')->name('HistoryController.SortPlatform')->middleware('HistoryMiddleware');
         Route::resource('/buyers', 'Admin\\BuyersController')->middleware('BuyerMiddleware');
         Route::resource('/orders', 'Admin\\OrdersController')->middleware('OrderMiddleware');
-        Route::resource('/general-store', 'Admin\\GeneralStoreController');
+        Route::resource('/general-store', 'Admin\\GeneralStoreController')->middleware('GeneralStoreMiddleware');
         Route::post('/general-store/{id}', 'Admin\\GeneralStoreController@deliver');
+        Route::get('/production', 'ProductionController@show');
+        Route::post('/production', 'ProductionController@SortProduction')->name('production.SortProduction');
 
 
         Route::middleware('AccessoriesMiddleware')->group(function(){
             Route::resource('/accessorieses', 'Admin\\AccessoriesesController')->only('store');
-            Route::get('/accessorieses/{order}','Admin\\AccessoriesesController@index')->name('accessorieses.index');
-            Route::get('/accessorieses/{order}/create','Admin\\AccessoriesesController@create');
-            Route::get('/accessorieses/{order}/{acsries}/edit','Admin\\AccessoriesesController@edit');
-            Route::get('/accessorieses/{order}/{acsries}/show','Admin\\AccessoriesesController@show');
-            Route::patch('/accessorieses/{order}/{acsries}','Admin\\AccessoriesesController@update');
-            Route::delete('/accessorieses/{order}/{acsries}','Admin\\AccessoriesesController@destroy');
-            Route::post('/accessorieses/{order}','Admin\\AccessoriesesController@store')->name('order.accessories');
-            Route::get('/accessorieses/store/{id}/{orderId}','Admin\\AccessoriesesController@acsplatform');//store accessories platform
+            Route::get('/accessorieses/{order}/order','Admin\\AccessoriesesController@index')->name('accessorieses.index');
+            Route::get('/accessorieses/order/{order}/create','Admin\\AccessoriesesController@create');
+            Route::get('/accessorieses/order/{order}/acs/{acsries}/edit','Admin\\AccessoriesesController@edit');
+            Route::get('/accessorieses/order/{order}/acs/{acsries}/show','Admin\\AccessoriesesController@show');
+            Route::patch('/accessorieses/order/{order}/acs/{acsries}/update','Admin\\AccessoriesesController@update');
+            Route::delete('/accessorieses/order/acs/destroy/{order}/{acsries}','Admin\\AccessoriesesController@destroy');
+            Route::post('/accessorieses/order/{order}/store','Admin\\AccessoriesesController@store')->name('order.accessories');
+            Route::get('/accessorieses/{id}/order/{orderId}/store','Admin\\AccessoriesesController@acsplatform');//store accessories platform
             Route::post('/accessorieses/store/{id}','Admin\\AccessoriesesController@storeacsplatform');//store accessories platform
         });
 
