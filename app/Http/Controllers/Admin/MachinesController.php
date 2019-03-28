@@ -82,9 +82,6 @@ class MachinesController extends Controller
     public function show($id)
     {
         $machine = Machine::findOrFail($id);
-
-
-
         return view('admin.machines.show', compact('machine'));
     }
 

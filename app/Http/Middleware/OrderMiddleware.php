@@ -18,18 +18,22 @@ class OrderMiddleware
     {
 
         $user = Auth::user();
-        // dd($user->can('create order'));
         if($request->is('admin/orders')){
             if(!$user->can('view order'))abort(401);
         }elseif($request->is('admin/orders/create')){
             if(!$user->can('create order')){
-                // dd(1);
                 abort(401);
             }
         }elseif($request->is('admin/orders/*/edit')){
             if(!$user->can('edit order'))abort(401);
         }elseif($request->is('admin/orders/*')){
-            if(!$user->can('show order'))abort(401);
+            if($request->isMethod('patch')){
+                if(!$user->can('edit order'))abort(401);
+            }elseif ($request->isMethod('get')) {
+                if(!$user->can('show order'))abort(401);
+            }elseif ($request->isMethod('post')) {
+                if(!$user->can('delete order'))abort(401);
+            }
         }
         return $next($request);
     }

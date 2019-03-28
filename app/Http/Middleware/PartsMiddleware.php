@@ -18,13 +18,13 @@ class PartsMiddleware
     {
         $user = Auth::user();
         if($request->is('admin/parts')){
-            if(!$user->can('view part'))abort(401);
+            if(!$user->can('view parts'))abort(401);
         }elseif($request->is('admin/parts/*/create')){
-            if(!$user->can('create part'))abort(401);
+            if(!$user->can('create parts'))abort(401);
         }elseif($request->is('admin/parts/*/edit')){
-            if(!$user->can('edit part'))abort(401);
+            if(!$user->can('edit parts'))abort(401);
         }elseif($request->is('admin/parts/*')){
-            if(!$user->can('show part'))abort(401);
+            if(!$user->can('edit parts'))abort(401);
         }
         return $next($request);
     }

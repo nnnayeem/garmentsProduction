@@ -1,5 +1,5 @@
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-    {!! Form::label('name', 'Order Title', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('name', 'Order Serial', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::text('name', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
         {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
@@ -24,7 +24,7 @@
         {!! $errors->first('qty', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('amount') ? 'has-error' : ''}}">
-    {!! Form::label('amount', 'amount', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('amount', 'amount(tk.)', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::number('amount', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
         {!! $errors->first('amount', '<p class="help-block">:message</p>') !!}

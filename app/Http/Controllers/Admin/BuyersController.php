@@ -6,7 +6,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Buyer;
+use App\User;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BuyersController extends Controller
 {
@@ -17,19 +20,13 @@ class BuyersController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
-
-        if (!empty($keyword)) {
-            $buyers = Buyer::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('country', 'LIKE', "%$keyword%")
-                ->orWhere('address', 'LIKE', "%$keyword%")
-                ->orWhere('language', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $buyers = Buyer::latest()->paginate($perPage);
+        
+        $user = User::findOrFail(Auth::user()->id);
+        if($user->can('all buyer')){
+            $buyers = Buyer::all();
+        }else{
+            $buyers = $user->buyers;
         }
-
         return view('admin.buyers.index', compact('buyers'));
     }
 
@@ -54,8 +51,10 @@ class BuyersController extends Controller
     {
         
         $requestData = $request->all();
+        $user = User::findOrFail(Auth::user()->id);
+        $user->buyers()->create($requestData);
         
-        Buyer::create($requestData);
+        // Buyer::create($requestData);
 
         return redirect('admin/buyers')->with('flash_message', 'Buyer added!');
     }
@@ -69,8 +68,10 @@ class BuyersController extends Controller
      */
     public function show($id)
     {
-        $buyer = Buyer::findOrFail($id);
-        $orders = $buyer->orders;
+        $user = Auth::user();
+        $orders = $user->orders;
+        // $buyer = Buyer::findOrFail($id);
+        // $orders = $buyer->orders;
 
         return view('admin.buyers.show', compact('buyer','orders'));
     }
@@ -85,6 +86,11 @@ class BuyersController extends Controller
     public function edit($id)
     {
         $buyer = Buyer::findOrFail($id);
+        $user = $buyer->user;
+        // dd($user);
+        if(empty($user) || $buyer->user->id != Auth::user()->id){
+            abort(403);
+        }
 
         return view('admin.buyers.edit', compact('buyer'));
     }
@@ -103,6 +109,11 @@ class BuyersController extends Controller
         $requestData = $request->all();
         
         $buyer = Buyer::findOrFail($id);
+        // $user = $buyer->user;
+        /*if(empty($user) || $user->id != Auth::user()->id){
+            dd(empty($user));
+            abort(403);
+        }*/
         $buyer->update($requestData);
 
         return redirect('admin/buyers')->with('flash_message', 'Buyer updated!');
@@ -117,8 +128,17 @@ class BuyersController extends Controller
      */
     public function destroy($id)
     {
-        Buyer::destroy($id);
-
+        $buyer = Buyer::with(['user','orders'])->where('id',$id)->first();
+        $user = $buyer->user;
+        $orders = $buyer->orders;
+        if(!empty($user)){
+            $id = $user->id;
+            if(Auth::user()->id == $id )
+                $buyer->delete();
+            else
+                abort(403);
+        }
+        
         return redirect('admin/buyers')->with('flash_message', 'Buyer deleted!');
     }
 }

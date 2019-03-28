@@ -22,6 +22,11 @@ class PermissionTableSeed extends Seeder
         Permission::create(['name'=>'edit permission','guard_name'=>'web']);
         Permission::create(['name'=>'delete permission','guard_name'=>'web']);
 
+        Permission::create(['name'=>'view role','guard_name'=>'web']);
+        Permission::create(['name'=>'create role','guard_name'=>'web']);
+        Permission::create(['name'=>'edit role','guard_name'=>'web']);
+        Permission::create(['name'=>'delete role','guard_name'=>'web']);
+
         Permission::create(['name'=>'view floors','guard_name'=>'web']);
         Permission::create(['name'=>'create floors','guard_name'=>'web']);
         Permission::create(['name'=>'edit floors','guard_name'=>'web']);
@@ -62,6 +67,7 @@ class PermissionTableSeed extends Seeder
         Permission::create(['name'=>'create order','guard_name'=>'web']);
         Permission::create(['name'=>'edit order','guard_name'=>'web']);
         Permission::create(['name'=>'delete order','guard_name'=>'web']);
+        Permission::create(['name'=>'show order','guard_name'=>'web']);
 
         Permission::create(['name'=>'view accessories','guard_name'=>'web']);
         Permission::create(['name'=>'create accessories','guard_name'=>'web']);
@@ -69,16 +75,24 @@ class PermissionTableSeed extends Seeder
         Permission::create(['name'=>'delete accessories','guard_name'=>'web']);
         Permission::create(['name'=>'update accessories','guard_name'=>'web']);
         Permission::create(['name'=>'input accessories','guard_name'=>'web']);
+        Permission::create(['name'=>'show accessories','guard_name'=>'web']);
 
         Permission::create(['name'=>'view buyer','guard_name'=>'web']);
         Permission::create(['name'=>'create buyer','guard_name'=>'web']);
         Permission::create(['name'=>'edit buyer','guard_name'=>'web']);
         Permission::create(['name'=>'delete buyer','guard_name'=>'web']);
+        Permission::create(['name'=>'own buyer','guard_name'=>'web']);
+        Permission::create(['name'=>'all buyer','guard_name'=>'web']);
 
         Permission::create(['name'=>'view general-store','guard_name'=>'web']);
         Permission::create(['name'=>'edit general-store','guard_name'=>'web']);
         Permission::create(['name'=>'request accessories','guard_name'=>'web']);
         Permission::create(['name'=>'deliver accessories','guard_name'=>'web']);
         Permission::create(['name'=>'delete general-store','guard_name'=>'web']);
+
+        Permission::create(['name'=>'view target','guard_name'=>'web']);
+        Permission::create(['name'=>'create target','guard_name'=>'web']);
+        Permission::create(['name'=>'edit target','guard_name'=>'web']);
+        Permission::create(['name'=>'delete target','guard_name'=>'web']);
     }
 }

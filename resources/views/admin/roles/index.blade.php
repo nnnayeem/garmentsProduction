@@ -33,7 +33,7 @@
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>#</th><th>Name</th><th>Permissions</th><th>Actions</th>
+                                <th width="5%">#</th><th width="20%">Name</th><th width="50%" >Role</th><th width="20%" >Actions</th>
                             </tr>
                             </thead>
                             <tbody align="" valign = "middle">

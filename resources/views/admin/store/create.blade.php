@@ -41,6 +41,15 @@
                     return false;
                 }
             });
+            $("#type").on('change',function(){
+                $('#machineCat').removeAttr('disabled');
+                var type = $("#type").val();
+                if(type == 2)
+                    $('#partsWrap').fadeIn();
+                else
+                    $('#partsWrap').fadeOut();
+
+            })
 
         });
 

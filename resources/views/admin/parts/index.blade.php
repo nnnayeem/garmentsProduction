@@ -113,7 +113,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" onclick="return closeModal();">
                             <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Add Partsl</h4>
+                        <h4 class="modal-title">Add Parts</h4>
                     </div>
                     <div class="modal-body">
                         <form url="/admin/parts" method="post" class="form-horizontal" id="addPart">
@@ -126,16 +126,6 @@
                                     </div>
                                     <div class="col-md-6">
                                         {!! Form::text('parts', null, ['class'=>'form-control','placeholder'=>'Machine Serial Number','id'=>'serial']) !!}
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        {!! Form::label('qty', 'Quantity', ['class' => 'pull-right control-label']) !!}
-                                    </div>
-                                    <div class="col-md-6">
-                                        {!! Form::number('qty', null, ['class'=>'form-control','placeholder'=>'Machine Serial Number','id'=>'serial']) !!}
                                     </div>
 
                                 </div>
@@ -177,7 +167,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('bower_resources/admin-lte/dist/js/demo.js')}}"></script>
     <script>
-
+            
             var modal = $("#modal-info");
             function closeModal() {
                 modal.removeClass("in").hide();
@@ -188,6 +178,7 @@
 
                 $("#modal-info #catId").val(catId);
             }
+            
         </script>
 @endsection
 

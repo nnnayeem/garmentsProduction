@@ -48,58 +48,60 @@
                             {{Session('error')}}
                         </div>
                         @endif
-                        <table id="example2" class="table table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Order Id</th>
-                                <th>Accessories</th>
-                                <th>User</th>
-                                <th>Quantity</th>
-                                <th>Requested</th>
-                                <th>Delivered</th>
-                                <th>Delivered Quantity</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody valign = "middle">
-                            @foreach($generalstore as $item)
+                        <div class='table-responsive' style="overflow-x:auto">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
                                 <tr>
-                                    <td>{{ $loop->iteration or $item->id }}</td>
-                                    <td>{{ $item->order_id }}</td>
-                                    <td>{{ $item->accessoriese_id }}</td>
-                                    <td>{{ $item->user_id }}</td>
-                                    <td>{{ $item->qty }}</td>
-                                    <td>{{ $item->created_at }}</td>
-                                    <td>{{ $item->delivered_qty }}</td>
-                                    <td>{{ $item->delivered }}</td>
-                                    <td>
-{{--                                        <a href="{{ url('/admin/general-store/' . $item->id) }}" title="View GeneralStore"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>--}}
-
-                                        @if(is_null($item->delivered))
-                                            <a href="{{ url('/admin/general-store/' . $item->id) }}" title="View GeneralStore"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Deliver</button></a>
-                                            <a href="{{ url('/admin/general-store/' . $item->id . '/edit') }}" title="Edit GeneralStore"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-
-                                        @else
-                                            <a href="#" title="Edit GeneralStore"><button class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Delivered</button></a>
-                                        @endif
-                                        {!! Form::open([
-                                            'method'=>'DELETE',
-                                            'url' => ['/admin/general-store', $item->id],
-                                            'style' => 'display:inline'
-                                        ]) !!}
-                                            {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
-                                                    'type' => 'submit',
-                                                    'class' => 'btn btn-danger btn-sm',
-                                                    'title' => 'Delete GeneralStore',
-                                                    'onclick'=>'return confirm("Confirm delete?")'
-                                            )) !!}
-                                        {!! Form::close() !!}
-                                    </td>
+                                    <th>#</th>
+                                    <th>Order Id</th>
+                                    <th>Accessories</th>
+                                    <th title="Quantity that is stored in the store">Stored</th>
+                                    <th title="User Who requested the Accessories">User</th>
+                                    <th>Quantity</th>
+                                    <th>Requested</th>
+                                    <th>Delivered</th>
+                                    <th>Delivered Quantity</th>
+                                    <th>Actions</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody valign = "middle">
+                                @foreach($generalstore as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration or $item->id }}</td>
+                                        <td>{{ $item->order?$item->order->name:'----' }}</td>
+                                        <td>{{ $item->accessories?$item->accessories->name:'----' }}</td>
+                                        <td>{{ $item->accessories?$item->accessories->stored:'----' }}</td>
+                                        <td>{{ $item->user?$item->user->name:'----' }}</td>
+                                        <td>{{ $item->qty }}</td>
+                                        <td>{{ $item->created_at }}</td>
+                                        <td>{{ $item->delivered_qty }}</td>
+                                        <td>{{ $item->delivered }}</td>
+                                        <td>
+                                            @if(is_null($item->delivered))
+                                                <a href="{{ url('/admin/general-store/' . $item->id) }}" title="View GeneralStore"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Deliver</button></a>
+                                                <a href="{{ url('/admin/general-store/' . $item->id . '/edit') }}" title="Edit GeneralStore"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
+                                            @else
+                                                <a href="#" title="Edit GeneralStore"><button class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Delivered</button></a>
+                                            @endif
+                                            {!! Form::open([
+                                                'method'=>'DELETE',
+                                                'url' => ['/admin/general-store', $item->id],
+                                                'style' => 'display:inline'
+                                            ]) !!}
+                                                {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
+                                                        'type' => 'submit',
+                                                        'class' => 'btn btn-danger btn-sm',
+                                                        'title' => 'Delete GeneralStore',
+                                                        'onclick'=>'return confirm("Confirm delete?")'
+                                                )) !!}
+                                            {!! Form::close() !!}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <!-- /.box-body -->
                 </div>

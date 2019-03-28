@@ -23,18 +23,32 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                @if($errors->any())
+                     <div class="alert alert-danger">
+                         @foreach($errors->all() as $error)
+                             <li>{!! $error !!}</li>
+                             @endforeach
+                     </div>
+                 @endif
                 <div class="box box-warning">
                     <div class="box-header">
                         <a href="/admin/request-platform/create" class="btn btn-flat btn-success">Request Machine & Parts</a>
-                        <a href="/admin/request-platform/general-store/create" class="btn btn-flat btn-success">Request General Accessories</a>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table id="example2" class="table table-bordered table-hover">
+                        <div class="table-responsive" style="overflow: auto">
+                            <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>#</th><th>Machine Category Id</th><th>Machine Id</th><th>Machine Token</th><th>Parts Name</th><th>Actions</th>
+                                <th>#</th>
+                                <th>Machine Category Id</th>
+                                <th>Machine Id</th>
+                                <th>Machine Token</th>
+                                <th>Parts Name</th>
+                                <th>Created At</th>
+                                <th>Updated at</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody valign = "middle">
@@ -43,7 +57,10 @@
                                     <td>{{ $loop->iteration or $item->id }}</td>
                                     <td>{{ $item->machineCategory->category }}</td>
                                     <td><a href="/admin/machineDetails/{{$item->machine_id}}">{{ $item->machine_id }}</a></td>
-                                    <td><a href="/admin/machineDetails/{{ $item->machine_id }}">{{ $item->machine->machine_token }}</a> </td><td>{{ $item->parts->parts }}</td>
+                                    <td><a href="/admin/machineDetails/{{ $item->machine_id }}">{{ $item->machine->machine_token }}</a> </td>
+                                    <td>{{ $item->parts->parts }}</td>
+                                    <td>{{ $item->created_at }}</td>
+                                    <td>{{ $item->updated_at }}</td>
                                     <td>
                                         {!! Form::open(['method'=>'post','url' => ['/admin/request-platform/approve'],'style' => 'display:inline-block']) !!}
 
@@ -72,6 +89,8 @@
                             @endforeach
                             </tbody>
                         </table>
+                        </div>
+                        
                     </div>
                     <!-- /.box-body -->
                 </div>

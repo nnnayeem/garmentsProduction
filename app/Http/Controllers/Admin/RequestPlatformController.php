@@ -71,14 +71,13 @@ class RequestPlatformController extends Controller
 
         ];
         Validator::make($requestData,$rules)->validate();
-//        dd($requestData);
         $part = Part::findOrFail($requestData['parts_id']);
-        if($part->qty>0){
-            RequestPlatform::create($requestData);
-        }else{
-            return back()->withErrors(['parts_id'=>'This parts does not has sufficient quantity.Please add more parts from <a href="/admin/store/create"><b>store</b></a>.']);
-        }
-
+        // if($part->qty>0){
+        //     RequestPlatform::create($requestData);
+        // }else{
+        //     return back()->withErrors(['parts_id'=>'This parts does not has sufficient quantity.Please add more parts from <a href="/admin/store/create"><b>store</b></a>.']);
+        // }
+        RequestPlatform::create($requestData);
 
         return redirect('admin/request-platform')->with('flash_message', 'RequestPlatform added!');
     }
@@ -130,7 +129,6 @@ class RequestPlatformController extends Controller
 
         ];
         Validator::make($requestData,$rules)->validate();
-        dd($requestData);
         $requestplatform = RequestPlatform::findOrFail($id);
         if($requestplatform->approved == 0 || $requestplatform->deliver == 0){
             $requestplatform->update($requestData);
@@ -176,11 +174,14 @@ class RequestPlatformController extends Controller
     {
         $id = $request->requestId;
         $rp = RequestPlatform::findOrFail($id);
-        $rp->increment('deliver',1);
+        // $rp->increment('deliver',1);
         $parts = $rp->parts;
         if(!empty($parts))
-//        if(count($parts) > 0)
         {
+            if(!$parts->qty>0){
+            return back()->withErrors(['parts_id'=>'This parts does not has sufficient quantity.Please add more parts from <a href="/admin/store/create"><b>store</b></a>.']);
+            }
+            $rp->increment('deliver',1);
             $parts->decrement('qty',1);
         }
 
@@ -193,8 +194,6 @@ class RequestPlatformController extends Controller
         $requestData = ['approved'=>1];
 
         $requestplatform = RequestPlatform::findOrFail($id);
-//        $requestplatform->increment('approved',1);
-
         $requestplatform->update($requestData);
 
         return redirect('/admin/request-platform');

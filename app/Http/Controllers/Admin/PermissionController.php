@@ -6,6 +6,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class PermissionController extends Controller
@@ -74,6 +75,8 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->id != 1)
+            return abort(401);
         $permission = Permission::findOrFail($id);
         return view('admin.permissions.edit',compact('permission'));
     }
@@ -87,10 +90,13 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(Auth::user()->id != 1)
+            return abort(401);
         $data = $request->all();
         $rules = [
             'name'=>'required|unique:permissions|max:191'
         ];
+
         Validator::make($data,$rules)->validate();
         $permission = Permission::findOrFail($id);
         $permission->update($data);
@@ -105,6 +111,8 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
+        if(Auth::user()->id != 1)
+            return abort(401);
         Permission::destroy($id);
         return redirect(route('permission.index'));
     }

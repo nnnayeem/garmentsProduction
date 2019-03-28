@@ -60,7 +60,7 @@
                             <tbody align="center" valign = "middle">
                             @foreach($parts as $item)
                                 <tr>
-                                    <td>{{ $loop->iteration or $item->id }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->parts }}</td><td>{{ $item->qty }}</td>
                                     <td>
                                         <a href="{{ url('/admin/parts/' . $item->id) }}" title="View parts"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>

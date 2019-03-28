@@ -61,7 +61,7 @@ class FloorsController extends Controller
         $requestData = $request->all();
 
         $rules = [
-            'floor'=>'required|unique:floors',
+            'floor'=>'required|unique:floors|numeric',
             'title'=>'required',
             'rows'=>'required',
             'MachinePerRow'=>'required',

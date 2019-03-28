@@ -104,9 +104,10 @@ class PartsController extends Controller
         ];
         Validator::make($requestData,$rules)->validate();
         $part = Part::findOrFail($id);
+        $catId = $part->machine_category_id;
         $part->update($requestData);
 
-        return redirect('admin/parts')->with('flash_message', 'Part updated!');
+        return redirect('admin/machine-category/'.$catId)->with('flash_message', 'Part added!');
     }
 
     /**
@@ -118,8 +119,11 @@ class PartsController extends Controller
      */
     public function destroy($id)
     {
-        Part::destroy($id);
+        // Part::destroy($id);
+        $part = Part::findOrFail($id);
+        $catId = $part->machine_category_id;
+        $part->delete();
 
-        return redirect('admin/parts')->with('flash_message', 'Part deleted!');
+        return redirect('admin/machine-category/'.$catId)->with('flash_message', 'Part added!');
     }
 }

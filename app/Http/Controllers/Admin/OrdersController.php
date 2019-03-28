@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use Validator;
 
 class OrdersController extends Controller
@@ -17,21 +19,16 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
-
-        /*if (!empty($keyword)) {
-            $orders = Order::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('buyer_id', 'LIKE', "%$keyword%")
-                ->orWhere('qty', 'LIKE', "%$keyword%")
-                ->orWhere('ending_date', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $orders = Order::latest()->paginate($perPage);
-        }*/
-        $orders = Order::with('buyer')->get();
+        $user = Auth::user();
+        if($user->can('own buyer'))
+            $orders = $user->orders;
+        else
+            $orders = Order::with('buyer')->get();
+        // dd($orders);
+        
+        // $orders = Order::with('buyer')->get();
 
         return view('admin.orders.index', compact('orders'));
     }
@@ -43,7 +40,14 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        $buyers = Buyer::pluck('name','id')->all();
+        $user = Auth::user();
+        if($user->can('own buyer'))
+            $buyers = $user->buyers()->pluck('name','id')->all();
+        else
+            $buyers = Buyer::pluck('name','id')->all();
+        
+        // dd($buyers);
+        // $buyers = Buyer::pluck('name','id')->all();
         return view('admin.orders.create',compact('buyers'));
     }
 
@@ -60,7 +64,8 @@ class OrdersController extends Controller
         $requestData = $request->all();
         Validator::make($requestData,[
             'name'=>'required',
-            'qty'=>'required|numeric',
+            'qty'=>'required|numeric|digits_between:1,11',
+            'amount'=>'required|numeric|digits_between:1,9',
             'buyer_id'=>'required|numeric|min:1',
             'ending_date'=>'required|date',
         ])->validate();
@@ -116,6 +121,10 @@ class OrdersController extends Controller
         $requestData = $request->all();
         
         $order = Order::findOrFail($id);
+        $startdate = $order->start_date;
+        if(now()->greaterThan(Carbon::parse($startdate))){
+            return redirect('admin/orders')->withErrors(['errors'=>'Order can not be updated because the order started at '.$startdate.'!']);
+        }
         $order->update($requestData);
 
         return redirect('admin/orders')->with('flash_message', 'Order updated!');
@@ -130,8 +139,15 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        Order::destroy($id);
-
+        // Order::destroy($id);
+        $order = Order::findOrFail($id);
+        $enddate = $order->ending_date;
+        $now = now();
+        if(now()->greaterThan(Carbon::parse($enddate))){
+            $order->delete();
+        }else{
+            return redirect('admin/orders')->withErrors(['errors'=>'Order can not be deleted because the order ending date is '.$enddate.'!']);
+        }
         return redirect('admin/orders')->with('flash_message', 'Order deleted!');
     }
 }

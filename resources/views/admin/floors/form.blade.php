@@ -1,7 +1,7 @@
 <div class="form-group {{ $errors->has('floor') ? 'has-error' : ''}}">
     {!! Form::label('floor', 'Floor', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('floor', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+        {!! Form::number('floor', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
         {!! $errors->first('floor', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">

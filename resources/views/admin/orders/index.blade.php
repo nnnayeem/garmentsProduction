@@ -35,7 +35,8 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12 col-md-12 col-lg-12">
+                @include('include.errors')
                 <div class="box box-warning">
                     <div class="box-header">
                         <a href="/admin/orders/create" class="btn btn-flat btn-success">Add orders</a>
@@ -45,7 +46,7 @@
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>#</th><th>Name</th</th><th>Master LC</th><th>Buyer Id</th><th>Qty</th><th>Completed</th><th>Target</th><th>Start Date</th><th>Created at</th><th>Actions</th>
+                                <th>#</th><th>Name</th</th><th>Master LC</th><th>Buyer Name</th><th>Qty</th><th>Amount</th><th>Completed</th><th>Start Date</th><th>End Date</th><th>Created at</th><th>Actions</th>
                             </tr>
                             </thead>
                             <tbody valign = "middle">
@@ -56,12 +57,15 @@
                                     <td>{{ $item->master_lc }}</td>
                                     <td>{{ $item->buyer?$item->buyer->name:'<span class="label label-danger">Empty</span>' }}</td>
                                     <td>{{ $item->qty }}</td>
+                                    <td>{{ $item->amount }}</td>
                                     <td>{{ $item->production }}</td>
-                                    <td>{{ $item->ending_date }}</td>
                                     <td>{{$item->start_date}}</td>
+                                    <td>{{ $item->ending_date }}</td>
                                     <td>{{$item->created_at}}</td>
                                     <td>
-                                        <a href="{{ url('/admin/accessorieses/' . $item->id) }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Accessories</button></a>
+
+
+                                        <a href="{{ url('/admin/accessorieses/' . $item->id . '/order') }}" title="View Order"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Accessories</button></a>
                                         <a href="{{ url('/admin/orders/' . $item->id . '/edit') }}" title="Edit Order"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
                                         {!! Form::open([
                                             'method'=>'DELETE',

@@ -72,6 +72,10 @@ class Kernel extends HttpKernel
         'HistoryMiddleware'=>\App\Http\Middleware\HistoryMiddleware::class,
         'OrderMiddleware'=>\App\Http\Middleware\OrderMiddleware::class,
         'GeneralStoreMiddleware'=>\App\Http\Middleware\GeneralStoreMiddleware::class,
+        'RequestPlatformMiddleware'=>\App\Http\Middleware\RequestPlatformMiddleware::class,
+        'RoleMiddleware'=>\App\Http\Middleware\RoleMiddleware::class,
+        'PartsMiddleware'=>\App\Http\Middleware\PartsMiddleware::class,
+        'TargetMiddleware'=>\App\Http\Middleware\TargetMiddleware::class,
     ];
 
     /**

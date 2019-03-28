@@ -45,14 +45,17 @@
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>#</th><th>Email</th><th>Name</th><th>Created At</th><th>Actions</th>
+                                <th>#</th><th>Email</th><th>Name</th><th>Role</th><th>Created At</th><th>Actions</th>
                             </tr>
                             </thead>
                             <tbody align="center" valign = "middle">
                             @foreach($users as $item)
                                 <tr>
                                     <td>{{ $loop->iteration or $item->id }}</td>
-                                    <td>{{ $item->email }}</td><td>{{ $item->name }}</td><td>{{ $item->created_at }}</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ count($item->roles)>0?$item->roles->first()->name:'----' }}</td>
+                                    <td>{{ $item->created_at }}</td>
                                     <td>
                                         <a href="{{ url('/admin/users/' . $item->id) }}" title="View user"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                         <a href="{{ url('/admin/users/' . $item->id . '/edit') }}" title="Edit user"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

@@ -9,7 +9,7 @@
 <div class="form-group {{ $errors->has('machine_category_id') ? 'has-error' : ''}}">
     {!! Form::label('machine_category_id', 'Select Machine', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::select('machine_category_id', ['0'=>'--select machine category--']+$cats, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required','id'=>'machineCat'] : ['class' => 'form-control','id'=>'machineCat']) !!}
+        {!! Form::select('machine_category_id', ['0'=>'--select machine category--']+$cats, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required','id'=>'machineCat','disabled'=>true] : ['class' => 'form-control','id'=>'machineCat','disabled'=>true]) !!}
         {!! $errors->first('machine_category_id', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

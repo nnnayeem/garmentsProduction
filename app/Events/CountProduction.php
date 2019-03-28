@@ -10,6 +10,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
+
 class CountProduction implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
@@ -28,7 +29,6 @@ class CountProduction implements ShouldBroadcast
         $this->eventType = $eventType;
         $this->day = $day;
         $this->type = $type;
-        $this->eventType = $eventType;
     }
 
     /**

@@ -78,6 +78,14 @@
 @endsection
 
 @section('script')
+        <script src="{{asset('bower_resources/jquery/dist/jquery.min.js')}}"></script>
+        <!-- Bootstrap 3.3.7 -->
+        <script src="{{asset('bower_resources/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 
+        <script src="{{asset('bower_resources/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+
+        <script src="{{asset('bower_resources/fastclick/lib/fastclick.js')}}"></script>
+
+        <script src="{{asset('bower_resources/admin-lte/dist/js/adminlte.min.js')}}"></script>
    
 @endsection

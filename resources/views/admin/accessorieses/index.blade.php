@@ -35,8 +35,6 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-
-
             <div class="col-md-3 col-lg-3 col-xs-6 col-sm-6">
                 <!-- small box -->
                 <div class="small-box bg-green">
@@ -113,6 +111,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
+                @include('include.errors')
                 <div class="box box-warning">
                     <div class="box-header">
                         <a href="/admin/accessorieses/order/{{$orderId}}/create" class="btn btn-flat btn-success">Add accessorieses</a>

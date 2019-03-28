@@ -8,6 +8,7 @@ use App\Target;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
+
 class CountProductionHandle implements ShouldQueue
 {
     /**
@@ -33,6 +34,7 @@ class CountProductionHandle implements ShouldQueue
         $line = $event->line;
         $target = Target::whereDate('day',$event->day)->where('floor_id',$event->floor)->where('line',$event->line);
         $tgt = $target->first();
+
         if(!empty($tgt)){
             if($type == 'g')
             {
@@ -50,7 +52,28 @@ class CountProductionHandle implements ShouldQueue
             elseif($type == 'r')
                 $target->increment('red');
             $tgt->details()->create(['type'=>$type,'floor_id'=>$floor,'line'=>$line]);
+        }else{
+            $tgt = Target::orderBy('day','desc')->where('floor_id',$event->floor)->where('line',$event->line)->first();
+            $day = $tgt->day;
+            if($type == 'g')
+            {
+                $tgt->increment('green');
+                $order = $tgt->order;
+                $production = $order->production;
+                $orderId = $order->id;
+                $order_u = Order::find($orderId);
+                if(!empty($order_u)){
+                    $order_u->update(['production'=>$production+1]);
+                }
+            }
+            elseif($type == 'y')
+                $tgt->increment('yellow');
+            elseif($type == 'r')
+                $tgt->increment('red');
+            $tgt->details()->create(['type'=>$type,'floor_id'=>$floor,'line'=>$line]);
         }
 
     }
+
+
 }

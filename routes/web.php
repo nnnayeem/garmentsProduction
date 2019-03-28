@@ -48,7 +48,7 @@ Route::get("/test/{id}","Admin\\MachinesController@testing");
 
 Route::middleware(['auth'])->group(function(){
     Route::prefix('/admin')->group(function () {
-        Route::resource('/roles','RoleController');
+        Route::resource('/roles','RoleController')->middleware('RoleMiddleware');
         Route::get('/profile','ProfileController@AdminProfile');
         Route::PATCH('/profile/{user_id}','ProfileController@UpdateAdminProfile');
         Route::PATCH('/profile/{user_id}/password','ProfileController@VendorPassword');
@@ -61,14 +61,18 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('/store', 'Admin\\StoreController',['except' => [
             'edit', 'update', 'destroy'
         ]]);
+        
+
         Route::post('/store/getAllMachinePartsFromMachineCat', 'Admin\\StoreController@getAllMachinePartsFromMachineCat');
         Route::get('/store/parts/{id}', 'Admin\\StoreController@test');
-        Route::resource('/request-platform', 'Admin\\RequestPlatformController');//store will create request for parts
+        Route::resource('/request-platform', 'Admin\\RequestPlatformController')->middleware('RequestPlatformMiddleware');//store will create request for parts
         Route::resource('/request-platform/general-store', 'Admin\\RequestPlatformController@generalStoreCreate');//store will create request for parts
         Route::post('/request-platform/fetchMachineFromCat', 'Admin\\RequestPlatformController@fetchMachineFromCat');//store will create request for parts
         Route::post('/request-platform/deliver', 'Admin\\RequestPlatformController@deliver')->name('deliver');//store will create request for parts
         Route::post('/request-platform/approve', 'Admin\\RequestPlatformController@approve')->name('approve');//store will create request for parts
-        Route::resource('/parts', 'Admin\\PartsController');
+        Route::post('/general-stores/getAccessoriess', 'Admin\\GeneralStoreController@getAccessories');
+        Route::resource('/targets', 'Admin\\TargetsController')->middleware('TargetMiddleware');
+        Route::resource('/parts', 'Admin\\PartsController')->middleware('PartsMiddleware');
         Route::resource('/users', 'Admin\\UsersController');
         Route::resource('/permission','Admin\\PermissionController');
         Route::get('/machine-history','Admin\\HistoryController@index')->middleware('HistoryMiddleware');
@@ -87,11 +91,11 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/accessorieses/order/{order}/create','Admin\\AccessoriesesController@create');
             Route::get('/accessorieses/order/{order}/acs/{acsries}/edit','Admin\\AccessoriesesController@edit');
             Route::get('/accessorieses/order/{order}/acs/{acsries}/show','Admin\\AccessoriesesController@show');
-            Route::patch('/accessorieses/order/{order}/acs/{acsries}/update','Admin\\AccessoriesesController@update');
+            Route::patch('/accessorieses/order/acs/update/{order}/{acsries}','Admin\\AccessoriesesController@update');
             Route::delete('/accessorieses/order/acs/destroy/{order}/{acsries}','Admin\\AccessoriesesController@destroy');
             Route::post('/accessorieses/order/{order}/store','Admin\\AccessoriesesController@store')->name('order.accessories');
-            Route::get('/accessorieses/{id}/order/{orderId}/store','Admin\\AccessoriesesController@acsplatform');//store accessories platform
-            Route::post('/accessorieses/store/{id}','Admin\\AccessoriesesController@storeacsplatform');//store accessories platform
+            Route::get('/accessorieses/{accessoriese_id}/order/{orderId}/store','Admin\\AccessoriesesController@acsplatform');//store accessories platform
+            Route::post('/accessorieses/storeAccessorieses/{accessoriese_id}','Admin\\AccessoriesesController@storeacsplatform');//store accessories platform
         });
 
     });
@@ -99,8 +103,4 @@ Route::middleware(['auth'])->group(function(){
     Route::get("/test/{id}","Admin\\RequestPlatformController@test");
 
 });
-Route::post('/admin/general-stores/getAccessoriess', 'Admin\\GeneralStoreController@getAccessories');
 
-
-
-Route::resource('admin/targets', 'Admin\\TargetsController');

@@ -17,7 +17,6 @@ class BuyerMiddleware
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-
         if($request->is('admin/buyers')){
             if(!$user->can('view buyer'))abort(401);
         }elseif($request->is('admin/buyers/create')){

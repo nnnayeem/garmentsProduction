@@ -72,7 +72,7 @@
 
                       {!! Form::model($accessoriese, [
                           'method' => 'PATCH',
-                          'url' => ['/admin/accessorieses', $orderId,$accessoriese->id],
+                          'url' => ['/admin/accessorieses/order/acs/update', $orderId,$accessoriese->id],
                           'class' => 'form-horizontal',
                           'files' => true
                       ]) !!}

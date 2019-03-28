@@ -93,7 +93,11 @@
         $('#ending_date').datepicker({
             autoclose: true,
             format:'yyyy-mm-dd'
-        })
+        });
+        $('#start_date').datepicker({
+            autoclose: true,
+            format:'yyyy-mm-dd'
+        });
 
 
     </script>

@@ -9,6 +9,8 @@ use App\Accessoriese;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use Validator;
 
 class AccessoriesesController extends Controller
@@ -21,7 +23,10 @@ class AccessoriesesController extends Controller
     public function index($orderId)
     {
         $order = Order::findOrFail($orderId);
-
+        $user = Auth::user();
+        if($user->can('own buyer')){
+            $this->verify($order);
+        }
         $accessorieses = $order->accessories;
 
         return view('admin.accessorieses.index', compact('accessorieses','orderId','order'));
@@ -34,6 +39,12 @@ class AccessoriesesController extends Controller
      */
     public function create($orderId)
     {
+        $user = Auth::user();
+        if($user->can('own buyer')){
+            $order = Order::findOrFail($orderId);
+            $this->verify($order);
+        }
+        
         return view('admin.accessorieses.create',compact('orderId'));
     }
 
@@ -53,21 +64,25 @@ class AccessoriesesController extends Controller
             'unit'=>'required|max:255',
             'order_id'=>'required',
             'amount'=>'required|numeric',
-            'lc'=>'required',
+            'lc'=>'required|unique:accessorieses,lc',
         ])->validate();
         $order = Order::findOrFail($ip['order_id']);
+        $user = Auth::user();
+        if($user->can('own buyer')){
+            $this->verify($order);
+        }
         $totalAmount = $order->amount;
         $orderexpense = $order->expense;
         $expense = $orderexpense+$ip['amount'];
         $acs['expense'] = $expense;
         if($expense > $totalAmount)
-            return redirect('admin/accessorieses/'.$ip['order_id'])->with('error', 'Opps! You have exceeded your expense');
+            return redirect('admin/accessorieses/'.$ip['order_id'].'/order')->withErrors(['error'=>'Opps! You have exceeded your Limit']);
         $acs = new Accessoriese($ip);
         $order->accessories()->save($acs);
         $order->update(['expense'=>$expense]);
 
 
-        return redirect('admin/accessorieses/'.$ip['order_id'])->with('flash_message', 'Accessoriese added!');
+        return redirect('admin/accessorieses/'.$ip['order_id'].'/order')->with('flash_message', 'Accessoriese added!');
     }
 
     /**
@@ -79,6 +94,11 @@ class AccessoriesesController extends Controller
      */
     public function show($orderId,$id)
     {
+        $user = Auth::user();
+        $order = Order::findOrFail($orderId);
+        if($user->can('own buyer')){
+            $user->verify($order);
+        }
         $accessoriese = Accessoriese::findOrFail($id);
 
         return view('admin.accessorieses.show', compact('accessoriese','orderId'));
@@ -93,6 +113,15 @@ class AccessoriesesController extends Controller
      */
     public function edit($orderId,$id)
     {
+        $user = Auth::user();
+        $order = Order::findOrFail($orderId);
+        $startdate = $order->start_date;
+        if(now()->greaterThan(Carbon::parse($startdate))){
+            return redirect('admin/orders')->withErrors(['errors'=>'Accessories can not be updated because the order started at '.$startdate.'!']);
+        }
+        if($user->can('own buyer')){
+            $user->verify($order);
+        }
         $accessoriese = Accessoriese::findOrFail($id);
 
         return view('admin.accessorieses.edit', compact('accessoriese','orderId'));
@@ -116,12 +145,22 @@ class AccessoriesesController extends Controller
             'unit'=>'required|max:255',
             'order_id'=>'required'
         ])->validate();
+        $user = Auth::user();
+        $order = Order::findOrFail($orderId);
+        $startdate = $order->start_date;
+        if(now()->greaterThan(Carbon::parse($startdate))){
+            return redirect('admin/accessorieses/'.$orderId.'/order')->withErrors(['errors'=>'Accessories can not be updated because order has already started.']);
+        }
+        if($user->can('own buyer')){
+            $user->verify($order);
+        }
+
         $orderId = $ip['order_id'];
         array_except($ip,'order_id');
         $accessoriese = Accessoriese::findOrFail($id);
         $accessoriese->update($ip);
 
-        return redirect('admin/accessorieses/'.$orderId)->with('flash_message', 'Accessoriese updated!');
+        return redirect('admin/accessorieses/'.$orderId . '/order')->with('flash_message', 'Accessoriese updated!');
     }
     public function acsplatform($id,$orderId){
         return view('admin.accessorieses.platform',compact('id','orderId'));
@@ -137,7 +176,7 @@ class AccessoriesesController extends Controller
         if($type == 0){
             DB::table('accessorieses')->where('id',$id)->increment('stored',$p['qty']);
         }
-        return redirect(route('order.accessories',$p['orderId']));
+        return redirect(route('accessorieses.index',$p['orderId']));
     }
 
     /**
@@ -151,6 +190,10 @@ class AccessoriesesController extends Controller
     {
         $acs = Accessoriese::findOrFail($id);
         $order = $acs->order;
+        $startdate = $order->start_date;
+        if(now()->greaterThan(Carbon::parse($startdate))){
+            return redirect('admin/accessorieses/'.$orderId.'/order')->withErrors(['errors'=>'Accessories can not be deleted because order has already started.']);
+        }
         $expense = $order->expense-$acs->amount;
         if($expense<0){
             $expense =0;
@@ -159,7 +202,16 @@ class AccessoriesesController extends Controller
         $acs->delete();
 
 //        Accessoriese::destroy($id);
-
-        return redirect('admin/accessorieses/'.$orderId)->with('flash_message', 'Accessoriese deleted!');
+        return redirect('admin/accessorieses/'.$orderId.'/order')->with('flash_message', 'Accessoriese added!');
+    }
+    protected function verify($order){
+        $user = Auth::user();
+        $buyer = $order->buyer;
+        if(!empty($buyer)){
+            $user_id = $buyer->user_id;
+            if($user_id != $user->id){
+                abort(401);
+            }
+        }
     }
 }

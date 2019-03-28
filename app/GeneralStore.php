@@ -29,6 +29,12 @@ class GeneralStore extends Model
     public function order(){
         return $this->belongsTo('App\Order');
     }
+    public function accessories(){
+        return $this->belongsTo('App\Accessoriese','accessoriese_id');
+    }
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 
     
 }

@@ -122,15 +122,7 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        {!! Form::open(['url' => ['/admin/accessorieses/store',$id], 'class' => 'form-horizontal', 'files' => true]) !!}
-
-                        {{--<div class="form-group {{ $errors->has('type') ? 'has-error' : ''}}">
-                            {!! Form::label('type', 'Select Option', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::select('type', ['0'=>'input to store','1'=>'deliver from store'],null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
-                                {!! $errors->first('type', '<p class="help-block">:message</p>') !!}
-                            </div>
-                        </div>--}}
+                        {!! Form::open(['url' => ['/admin/accessorieses/storeAccessorieses',$id],'method'=>'post', 'class' => 'form-horizontal', 'files' => true]) !!}
                         {!! Form::hidden('type',0) !!}
                         {!! Form::hidden('orderId',$orderId) !!}
                         <div class="form-group {{ $errors->has('qty') ? 'has-error' : ''}}">

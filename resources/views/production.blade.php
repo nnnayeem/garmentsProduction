@@ -193,13 +193,16 @@
                 }
                 vlu = parseInt(s.html());
                 s.html(vlu + 1);
-                grn = parseInt($("#green").html());
-                blc = $("#balance");
-                blc.html(tgt-grn);
-                p = $("#production");
-                vlu = parseInt(p.html());
-                p.html(vlu+1);
-                $(".progress-bar").css('width',((grn*100)/tgt)+'%');
+                
+                if(type === 'g'){
+                    grn = parseInt($("#green").html());
+                    blc = $("#balance");
+                    blc.html(tgt-grn);
+                    p = $("#production");
+                    vlu = parseInt(p.html());
+                    p.html(vlu+1);
+                    $(".progress-bar").css('width',((grn*100)/tgt)+'%');
+                }
             });
             channel.bind('App\\Events\\BroadcastHourlyReport', function(data) {
                 console.log(data);
