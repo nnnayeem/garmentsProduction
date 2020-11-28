@@ -47,5 +47,9 @@ class Floor extends Model
         return $this->hasMany('App\Target','floor_id');
     }
 
-    
+    public function controllers()
+    {
+        return $this->hasMany('App\Controller');
+    }
+
 }

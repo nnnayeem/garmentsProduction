@@ -1,18 +1,13 @@
 @extends('layouts.master')
 
 @section('style')
+    <link rel="stylesheet" href="{{asset('bower_resources/datatables.net-bs/css/dataTables.bootstrap.css')}}">
+
     <link rel="stylesheet" href="{{asset('bower_resources/bootstrap/dist/css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('bower_resources/font-awesome/css/font-awesome.min.css')}}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{asset('bower_resources/Ionicons/css/ionicons.min.css')}}">
-
-    <link rel="stylesheet" href="{{asset('bower_resources/bootstrap-daterangepicker/daterangepicker.css')}}">
-    <link rel="stylesheet" href="{{asset('bower_resources/bootstrap-datepicker/dist/css/bootstrap-datepicker.css')}}">
-    <link rel="stylesheet" href="{{asset('bower_resources/admin-lte/plugins/iCheck/all.css')}}">
-    <link rel="stylesheet" href="{{asset('bower_resources/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css')}}">
-    <link rel="stylesheet" href="{{asset('bower_resources/admin-lte/plugins/timepicker/bootstrap-timepicker.min.css')}}">
-    <link rel="stylesheet" href="{{asset('bower_resources/select2/dist/css/select2.css')}}">
 
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('bower_resources/admin-lte/dist/css/AdminLTE.min.css')}}">
@@ -28,7 +23,8 @@
     <![endif]-->
 
     <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 @endsection
 
 @section('main')
@@ -50,8 +46,10 @@
 
 
                 <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                    </button>
                 </div>
             </div>
             <!-- /.box-header -->
@@ -62,7 +60,7 @@
                     </div>
                     <div class="col-md-8">
 
-                         @if ($errors->any())
+                        @if ($errors->any())
                             <ul class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -70,16 +68,16 @@
                             </ul>
                         @endif
 
-                      {!! Form::model($floor, [
-                          'method' => 'PATCH',
-                          'url' => ['/admin/floors', $floor->id],
-                          'class' => 'form-horizontal',
-                          'files' => true
-                      ]) !!}
+                        {!! Form::model($floor, [
+                            'method' => 'PATCH',
+                            'url' => ['/admin/floors', $floor->id],
+                            'class' => 'form-horizontal',
+                            'files' => true
+                        ]) !!}
 
-                      @include ('admin.floors.form', ['submitButtonText' => 'Update'])
+                        @include ('admin.floors.form', ['submitButtonText' => 'Update'])
 
-                      {!! Form::close() !!}
+                        {!! Form::close() !!}
 
 
                     </div>
@@ -94,28 +92,89 @@
         <!-- /.box -->
 
 
+        <div class="box box-danger">
+            <div class="box-header">
+
+            </div>
+            <!-- /.box-header -->
+
+
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        @if ($errors->any())
+                            <ul class="alert alert-danger">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+
+
+                        <table id="example2" class="table table-responsive table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Row No</th>
+                                <th>Controller IP Address</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse($floor->controllers as $controller)
+                                <tr>
+                                    <td>Row No 1</td>
+                                    <td>192.168.0.104</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td>No Rows Found</td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+
+        </div>
+
 
     </section>
 @endsection
 
 @section('script')
-    !-- jQuery 3 -->
+
+
+
     <script src="{{asset('bower_resources/jquery/dist/jquery.min.js')}}"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="{{asset('bower_resources/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 
 
-    <script src="{{asset('bower_resources/select2/dist/js/select2.full.js')}}"></script>
-    <!-- Slimscroll -->
-    <script src="{{asset('bower_resources/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{asset('bower_resources/datatables.net/js/jquery.dataTables.js')}}"></script>
 
-    <script src="{{asset('bower_resources/fastclick/lib/fastclick.js')}}"></script>
+    <script src="{{asset('bower_resources/datatables.net-bs/js/dataTables.bootstrap.js')}}"></script>
 
     <script src="{{asset('bower_resources/admin-lte/dist/js/adminlte.min.js')}}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{asset('bower_resources/admin-lte/dist/js/demo.js')}}"></script>
 
     <script>
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': true,
+            'ordering': false,
+            'info': true,
+            'autoWidth': false,
+            "pageLength": 15
+        });
+
+    </script>
 
 @endsection
 

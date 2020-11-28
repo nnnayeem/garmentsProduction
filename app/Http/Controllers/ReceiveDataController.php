@@ -20,10 +20,30 @@ class ReceiveDataController extends Controller
 
     public function postRequest(Request $request)
     {
-        dd(json_decode(array_first($request->all()),true));
+//        dd(json_decode(array_first($request->all()),true));
         $input = $request->all();
 
-        Platform::create($input);
+        $data = $input['data'];
+
+        foreach ($data as $factoryControllerData){
+            $factoryControllerData = explode('>', $factoryControllerData);
+            if(sizeof($factoryControllerData) == 2){
+                $ip = $factoryControllerData[0];
+                $message = $factoryControllerData[1];
+
+                $ip = explode(':', $ip);
+
+                if($ip[0] == '192.168.0.104'){
+                    $floor = 1;
+                    $switch = $message;
+                    if(!is_integer($switch)){
+                        $switch = '2';
+                    }
+                    Platform::create(['room' => $floor, 'switch' => $switch]);
+                }
+            }
+
+        }
         return;
 
     }

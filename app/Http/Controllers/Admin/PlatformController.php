@@ -8,22 +8,40 @@ use App\Platform;
 use App\Switche;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Psy\Util\Json;
 
 class PlatformController extends Controller
 {
     public function postRequest(Request $request)
     {
-        /*$data = json_decode(array_first($request->all()),true);
-        $floor  =$data['floor'];
-        $switch =$data['switch'];
-        $status =$data['status'];
-        $data = Machine::all()->where('floor_id',$floor)->where('switch',$switch)->first();
-        if(count($data) > 0)
-        {
-            $data->update(['status'=>$status,'checked'=>0]);
-            event(new SwitchPressed($floor,$switch,$status));
-        }*/
-        return;
+        $input = $request->all();
+
+//        dd($input);
+        $data = $input['data'];
+
+        foreach ($data as $factoryControllerData){
+            $factoryControllerData = explode('>', $factoryControllerData);
+            if(sizeof($factoryControllerData) == 2){
+                $ip = $factoryControllerData[0];
+                $message = $factoryControllerData[1];
+
+                $ip = explode(':', $ip);
+
+                if($ip[0] == '192.168.0.104'){
+                    $floor = 1;
+                    $switch = $message;
+//                    dd(filter_var($switch, FILTER_VALIDATE_INT), $switch);
+                    if(!filter_var($switch, FILTER_VALIDATE_INT)){
+                        $switch = '2';
+                    }
+                    Platform::create(['floor' => $floor, 'switch' => $switch]);
+                }
+            }
+
+        }
+        return [
+            "status" => 202
+        ];
 
     }
 
@@ -75,6 +93,11 @@ class PlatformController extends Controller
 
     }
     public function callMechanic($floor,$switch,$status)
+    {
+        return $this->callingMechanic($floor, $switch, $status);
+    }
+
+    public function callingMechanic($floor,$switch,$status)
     {
         $data = Switche::where('floor_id',$floor)->where('switch',$switch)->first();
 
