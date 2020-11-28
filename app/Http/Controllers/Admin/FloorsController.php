@@ -57,7 +57,7 @@ class FloorsController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
 
         $rules = [
@@ -73,8 +73,19 @@ class FloorsController extends Controller
         Validator::make($requestData,$rules,$message)->validate();
         $rows = $requestData['rows'];
         $machinePerRow = $requestData['MachinePerRow'];
-        
+
         $data = Floor::create($requestData);
+        $controllers = [];
+        for($i=1; $i<=$rows; $i++){
+            $controller = [
+                'floor_id' => $data->id,
+                'serial' => "N/A",
+                'ip' => "N/A",
+            ];
+            array_push($controllers, $controller);
+        }
+        $data->controllers()->createMany($controllers);
+
         $id = $data->id;
         if(!empty($data)){
             for($i=1;$i<=$rows*$machinePerRow;$i++){
@@ -124,9 +135,9 @@ class FloorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $floor = Floor::findOrFail($id);
         $floor->update($requestData);
 

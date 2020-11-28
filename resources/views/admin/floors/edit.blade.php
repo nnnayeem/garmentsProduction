@@ -116,14 +116,18 @@
                             <thead>
                             <tr>
                                 <th>Row No</th>
-                                <th>Controller IP Address</th>
+                                <th>Title</th>
+                                <th>Serial</th>
+                                <th>IP Address of the Controller</th>
                             </tr>
                             </thead>
                             <tbody>
                             @forelse($floor->controllers as $controller)
                                 <tr>
-                                    <td>Row No 1</td>
-                                    <td>192.168.0.104</td>
+                                    <td>No {{$loop->index + 1}}</td>
+                                    <td>{{$floor->title}}</td>
+                                    <td>{{$controller->serial}}</td>
+                                    <td>{{$controller->ip}}</td>
                                 </tr>
                             @empty
                                 <tr>

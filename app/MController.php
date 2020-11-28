@@ -25,7 +25,13 @@ class MController extends Model
      *
      * @var array
      */
-    protected $fillable = ['floor_id','serial'];
+    protected $fillable = ['floor_id','serial', 'ip'];
 
-    
+
+    public function floor()
+    {
+        return $this->belongsTo('App\Floor');
+    }
+
+
 }
