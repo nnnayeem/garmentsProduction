@@ -55313,8 +55313,8 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\htdocs\laravelProject\laravelArduino1\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\htdocs\laravelProject\laravelArduino1\resources\sass\front.scss */"./resources/sass/front.scss");
+__webpack_require__(/*! D:\website_development\environmnt\laragon\www\garmentsProduction\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\website_development\environmnt\laragon\www\garmentsProduction\resources\sass\front.scss */"./resources/sass/front.scss");
 
 
 /***/ })

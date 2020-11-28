@@ -38,9 +38,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::pluck('name','id');
-        $roles = Role::pluck('name','id');
-        return view('admin.users.create',compact('permissions','roles'));
+        $permissions = Permission::pluck('name', 'id');
+        $roles = Role::pluck('name', 'id');
+        return view('admin.users.create', compact('permissions', 'roles'));
 
     }
 
@@ -53,24 +53,24 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
         $rules = [
-            'email'=>'required|unique:users|max:191|email',
-            'name'=>'required|max:191',
-            'role'=>'required|min:1',
+            'email' => 'required|unique:users|max:191|email',
+            'name' => 'required|max:191',
+            'role' => 'required|min:1',
             // 'permission'=>'required|min:1',
-            'password'=>'required|min:6|confirmed',
+            'password' => 'required|min:6|confirmed',
 
         ];
-        Validator::make($requestData,$rules)->validate();
+        Validator::make($requestData, $rules)->validate();
         $requestData['password'] = bcrypt($requestData['password']);
-        
+
         $user = User::create($requestData);
         /*if(!empty($requestData['permission'])){
             $user->givePermissionTo($requestData['permission']);
         }*/
-        if(!empty($requestData['role'])){
+        if (!empty($requestData['role'])) {
             $user->assignRole($requestData['role']);
         }
 
@@ -80,14 +80,14 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\View\View
      */
     public function show($id)
     {
         $user = User::findOrFail($id);
-        $permissions = Permission::pluck('name','id');
+        $permissions = Permission::pluck('name', 'id');
 
         return view('admin.users.show', compact('user'));
     }
@@ -95,26 +95,26 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\View\View
      */
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        // $permissions = Permission::pluck('name','id');
-        $roles = Role::pluck('name','id');
-        // $assignedPermissions = $user->getAllPermissions();
+        $permissions = Permission::pluck('name', 'id');
+        $roles = Role::pluck('name', 'id');
+        $assignedPermissions = $user->getAllPermissions();
         $assignedRoles = $user->roles;
 
-        return view('admin.users.edit', compact('user','permissions','assignedPermissions','roles','assignedRoles'));
+        return view('admin.users.edit', compact('user', 'permissions', 'assignedPermissions', 'roles', 'assignedRoles'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -124,25 +124,25 @@ class UsersController extends Controller
         $requestData = $request->all();
         $rules = [
 
-            'name'=>'required|max:191',
-            'role'=>'required|min:1',
+            'name' => 'required|max:191',
+            'role' => 'required|min:1',
             // 'permission'=>'required|min:1',
 
         ];
-        Validator::make($requestData,$rules)->validate();
-        if(!empty($requestData['password'])){
+        Validator::make($requestData, $rules)->validate();
+        if (!empty($requestData['password'])) {
             $requestData['password'] = bcrypt($requestData['password']);
-        }else{
-            array_except($requestData,['password']);
+        } else {
+            array_except($requestData, ['password']);
         }
 
-        
+
         $user = User::findOrFail($id);
         $user->update($requestData);
         // if(count($requestData['permission'])>0){
         //     $user->syncPermissions($requestData['permission']);
         // }
-        if(count($requestData['role'])>0){
+        if (count($requestData['role']) > 0) {
             $user->syncRoles($requestData['role']);
         }
 
@@ -153,7 +153,7 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
