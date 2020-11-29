@@ -53,7 +53,7 @@ Route::middleware(['auth'])->group(function(){
         Route::PATCH('/profile/{user_id}','ProfileController@UpdateAdminProfile');
         Route::PATCH('/profile/{user_id}/password','ProfileController@VendorPassword');
         Route::resource('/floors', 'Admin\\FloorsController');
-        Route::resource('/m-controllers', 'Admin\\MControllersController');
+        Route::resource('/controllers', 'Admin\\MControllersController');
         Route::resource('/machines', 'Admin\\MachinesController');
         Route::get('/machineDetails/{id}','Admin\\MachinesController@machineDetails');
 //	Route::resource('/machines/{floor_id}/{switch}', 'Admin\\MachinesController@setMachine');
@@ -61,7 +61,7 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('/store', 'Admin\\StoreController',['except' => [
             'edit', 'update', 'destroy'
         ]]);
-        
+
 
         Route::post('/store/getAllMachinePartsFromMachineCat', 'Admin\\StoreController@getAllMachinePartsFromMachineCat');
         Route::get('/store/parts/{id}', 'Admin\\StoreController@test');

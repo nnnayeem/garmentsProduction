@@ -21,10 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="95cfa2a3-b111-4114-aa38-ac58876741d1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Floor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Floor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/FloorsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/FloorsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/MController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/MController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/MControllersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/MControllersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/floors/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/floors/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +155,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -179,7 +179,8 @@
       <updated>1606495794044</updated>
       <workItem from="1606495796009" duration="2325000" />
       <workItem from="1606532390889" duration="8752000" />
-      <workItem from="1606565309253" duration="4011000" />
+      <workItem from="1606565309253" duration="8511000" />
+      <workItem from="1606620051716" duration="6049000" />
     </task>
     <servers />
   </component>
@@ -203,9 +204,13 @@
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="734" y="362" key="#com.intellij.fileTypes.FileTypeChooser/0.40.1920.1040@0.40.1920.1040" timestamp="1606498662780" />
-    <state x="623" y="265" width="672" height="678" key="search.everywhere.popup" timestamp="1606569118051">
+    <state x="461" y="205" key="SettingsEditor" timestamp="1606622039082">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="623" y="265" width="672" height="678" key="search.everywhere.popup/0.40.1920.1040@0.40.1920.1040" timestamp="1606569118051" />
+    <state x="461" y="205" key="SettingsEditor/0.40.1920.1040@0.40.1920.1040" timestamp="1606622039082" />
+    <state x="623" y="265" width="672" height="678" key="search.everywhere.popup" timestamp="1606623190055">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="623" y="265" width="672" height="678" key="search.everywhere.popup/0.40.1920.1040@0.40.1920.1040" timestamp="1606623190055" />
   </component>
 </project>

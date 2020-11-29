@@ -28,6 +28,17 @@
 @endsection
 
 @section('main')
+    <style>
+        .secondary-table {
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .secondary-table-head {
+            border-bottom: 1px solid #ddd;
+        }
+
+    </style>
     <section class="content-header">
         <h1> Edit Floor #{{ $floor->id }}</h1>
         <ol class="breadcrumb">
@@ -55,9 +66,6 @@
             <!-- /.box-header -->
             <div class="box-body">
                 <div class="row">
-                    <div class="col-md-3">
-                        {{--<img src="{{asset(is_null($photo)?"images/avatar3.png":$photo)}}" class="img-responsive img-rounded" style="width:100%;">--}}
-                    </div>
                     <div class="col-md-8">
 
                         @if ($errors->any())
@@ -101,7 +109,7 @@
 
             <div class="box-body">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="offset-md-3 col-md-8">
 
                         @if ($errors->any())
                             <ul class="alert alert-danger">
@@ -115,19 +123,60 @@
                         <table id="example2" class="table table-responsive table-bordered">
                             <thead>
                             <tr>
-                                <th>Row No</th>
-                                <th>Title</th>
-                                <th>Serial</th>
-                                <th>IP Address of the Controller</th>
+                                <th width="100" class="text-center"><h4>
+                                        Row No
+                                    </h4></th>
                             </tr>
                             </thead>
                             <tbody>
                             @forelse($floor->controllers as $controller)
+
                                 <tr>
-                                    <td>No {{$loop->index + 1}}</td>
-                                    <td>{{$floor->title}}</td>
-                                    <td>{{$controller->serial}}</td>
-                                    <td>{{$controller->ip}}</td>
+                                    <td>
+                                        <form action="{{url("admin/controllers/".$controller->id)}}" method="POST" accept-charset="UTF-8">
+{{--                                        <form action="{{url('controllers/'+$controller->id+'/edit')}}" method="POST" accept-charset="UTF-8">--}}
+                                            <input type="hidden" name="_method" value="PATCH">
+                                            @csrf
+                                            <table class="secondary-table">
+                                                @if($loop->index == 0)
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="secondary-table-normal-field secondary-table-head">
+                                                            Row No
+                                                        </th>
+                                                        <th class="secondary-table-normal-field secondary-table-head">
+                                                            Floor Title
+                                                        </th>
+                                                        <th class="secondary-table-input-field secondary-table-head">
+                                                            Controller Serial
+                                                        </th>
+                                                        <th class="secondary-table-input-field secondary-table-head">
+                                                            Controller IP
+                                                        </th>
+                                                        <th class="secondary-table-normal-field secondary-table-head">
+                                                            Action
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                @endif
+                                                <tr>
+                                                    <td class="secondary-table-normal-field">
+                                                        No {{$loop->index + 1}}
+                                                    </td>
+                                                    <td class="secondary-table-normal-field">{{$floor->title}}</td>
+                                                    <td class="secondary-table-input-field">
+                                                        <input type="text" class="form-control" value="{{$controller->serial}}" name="serial">
+                                                    </td>
+                                                    <td class="secondary-table-input-field">
+                                                        <input type="text" class="form-control" value="{{$controller->ip}}" name="ip">
+                                                    </td>
+                                                    <td class="secondary-table-normal-field">
+                                                        <input type="submit" class="btn btn-success" value="Update Controller ">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </form>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
@@ -169,13 +218,12 @@
 
     <script>
         $('#example2').DataTable({
-            'paging': true,
+            'paging': false,
             'lengthChange': false,
-            'searching': true,
+            'searching': false,
             'ordering': false,
             'info': true,
             'autoWidth': false,
-            "pageLength": 15
         });
 
     </script>

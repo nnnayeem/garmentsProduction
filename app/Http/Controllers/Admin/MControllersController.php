@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\MController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use \Validator;
 
 class MControllersController extends Controller
 {
@@ -53,7 +54,7 @@ class MControllersController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
         $serial = Str::random(10);
         $requestData['serial'] = $serial;
@@ -101,13 +102,23 @@ class MControllersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $requestData = $request->all();
-        
+
+        $rules = [
+            'serial'=>'required|unique:m_controllers,serial,'.$id,
+            'ip'=>'required|max:40|unique:m_controllers,ip,'.$id,
+        ];
+
+        $message = [
+
+        ];
+        $requestData = Validator::make($request->all(),$rules,$message)->validate();
+
+
         $mcontroller = MController::findOrFail($id);
+
         $mcontroller->update($requestData);
 
-        return redirect('admin/m-controllers')->with('flash_message', 'MController updated!');
+        return back()->with(['floor' => $mcontroller->floor]);
     }
 
     /**
