@@ -11,7 +11,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class SwitchPressed implements ShouldBroadcastNow
+class SwitchPressed implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -29,6 +29,7 @@ class SwitchPressed implements ShouldBroadcastNow
         $this->floor = $floor;
         $this->switch = $switch;
         $this->status = $status;
+//        dd($floor, $switch, $status);
     }
 
     /**

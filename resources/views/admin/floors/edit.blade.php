@@ -38,6 +38,14 @@
             border-bottom: 1px solid #ddd;
         }
 
+        .secondary-table-normal-field{
+            width: 100px;
+        }
+
+        .secondary-table-input-field{
+            width: 200px;
+        }
+
     </style>
     <section class="content-header">
         <h1> Edit Floor #{{ $floor->id }}</h1>
@@ -109,7 +117,8 @@
 
             <div class="box-body">
                 <div class="row">
-                    <div class="offset-md-3 col-md-8">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
 
                         @if ($errors->any())
                             <ul class="alert alert-danger">
@@ -120,71 +129,79 @@
                         @endif
 
 
-                        <table id="example2" class="table table-responsive table-bordered">
-                            <thead>
-                            <tr>
-                                <th width="100" class="text-center"><h4>
-                                        Row No
-                                    </h4></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @forelse($floor->controllers as $controller)
+                        <div class="table-responsive">
+                            <table id="example2" class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th width="100" class="text-center"><h4>
+                                            Row Configuration
+                                        </h4></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @forelse($floor->controllers as $controller)
 
-                                <tr>
-                                    <td>
-                                        <form action="{{url("admin/controllers/".$controller->id)}}" method="POST" accept-charset="UTF-8">
-{{--                                        <form action="{{url('controllers/'+$controller->id+'/edit')}}" method="POST" accept-charset="UTF-8">--}}
-                                            <input type="hidden" name="_method" value="PATCH">
-                                            @csrf
-                                            <table class="secondary-table">
-                                                @if($loop->index == 0)
-                                                    <thead>
+                                    <tr>
+                                        <td>
+                                            <form action="{{url("admin/controllers/".$controller->id)}}" method="POST" accept-charset="UTF-8">
+                                                {{--                                        <form action="{{url('controllers/'+$controller->id+'/edit')}}" method="POST" accept-charset="UTF-8">--}}
+                                                <input type="hidden" name="_method" value="PATCH">
+                                                @csrf
+                                                <table class="secondary-table">
+                                                    @if($loop->index == 0)
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="secondary-table-normal-field secondary-table-head">
+                                                                Row No
+                                                            </th>
+                                                            <th class="secondary-table-normal-field secondary-table-head">
+                                                                Row Title
+                                                            </th>
+                                                            <th class="secondary-table-normal-field secondary-table-head">
+                                                                Floor Title
+                                                            </th>
+                                                            <th class="secondary-table-input-field secondary-table-head">
+                                                                Controller Serial
+                                                            </th>
+                                                            <th class="secondary-table-input-field secondary-table-head">
+                                                                Controller IP
+                                                            </th>
+                                                            <th class="secondary-table-normal-field secondary-table-head">
+                                                                Action
+                                                            </th>
+                                                        </tr>
+                                                        </thead>
+                                                    @endif
                                                     <tr>
-                                                        <th class="secondary-table-normal-field secondary-table-head">
-                                                            Row No
-                                                        </th>
-                                                        <th class="secondary-table-normal-field secondary-table-head">
-                                                            Floor Title
-                                                        </th>
-                                                        <th class="secondary-table-input-field secondary-table-head">
-                                                            Controller Serial
-                                                        </th>
-                                                        <th class="secondary-table-input-field secondary-table-head">
-                                                            Controller IP
-                                                        </th>
-                                                        <th class="secondary-table-normal-field secondary-table-head">
-                                                            Action
-                                                        </th>
+                                                        <td class="secondary-table-normal-field">
+                                                            No {{$controller->line_no}}
+                                                        </td>
+                                                        <td class="secondary-table-normal-field">
+                                                            No {{$controller->line_title}}
+                                                        </td>
+                                                        <td class="secondary-table-normal-field">{{$floor->title}}</td>
+                                                        <td class="secondary-table-input-field">
+                                                            <input type="text" class="form-control" value="{{$controller->serial}}" name="serial">
+                                                        </td>
+                                                        <td class="secondary-table-input-field">
+                                                            <input type="text" class="form-control" value="{{$controller->ip}}" name="ip">
+                                                        </td>
+                                                        <td class="secondary-table-normal-field">
+                                                            <input type="submit" class="btn btn-success" value="Update Controller ">
+                                                        </td>
                                                     </tr>
-                                                    </thead>
-                                                @endif
-                                                <tr>
-                                                    <td class="secondary-table-normal-field">
-                                                        No {{$loop->index + 1}}
-                                                    </td>
-                                                    <td class="secondary-table-normal-field">{{$floor->title}}</td>
-                                                    <td class="secondary-table-input-field">
-                                                        <input type="text" class="form-control" value="{{$controller->serial}}" name="serial">
-                                                    </td>
-                                                    <td class="secondary-table-input-field">
-                                                        <input type="text" class="form-control" value="{{$controller->ip}}" name="ip">
-                                                    </td>
-                                                    <td class="secondary-table-normal-field">
-                                                        <input type="submit" class="btn btn-success" value="Update Controller ">
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td>No Rows Found</td>
-                                </tr>
-                            @endforelse
-                            </tbody>
-                        </table>
+                                                </table>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td>No Rows Found</td>
+                                    </tr>
+                                @endforelse
+                                </tbody>
+                            </table>
+                        </div>
 
 
                     </div>

@@ -81,6 +81,8 @@ class FloorsController extends Controller
                 'floor_id' => $data->id,
                 'serial' => "N/A",
                 'ip' => "N/A",
+                'line_no' => $i,
+                'line_title' => 'row-'.$i
             ];
             array_push($controllers, $controller);
         }
@@ -153,7 +155,12 @@ class FloorsController extends Controller
      */
     public function destroy($id)
     {
-        Floor::destroy($id);
+        $floor = Floor::find($id);
+
+        $floor->controllers()->delete();
+        $floor->switches()->delete();
+
+        $floor->delete();
 
         return redirect('admin/floors')->with('flash_message', 'Floor deleted!');
     }

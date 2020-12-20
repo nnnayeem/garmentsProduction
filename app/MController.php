@@ -25,7 +25,7 @@ class MController extends Model
      *
      * @var array
      */
-    protected $fillable = ['floor_id','serial', 'ip'];
+    protected $fillable = ['floor_id','serial', 'ip', 'line_no', 'line_title'];
 
 
     public function floor()

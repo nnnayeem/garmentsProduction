@@ -9,7 +9,7 @@ $(document).ready(function () {
         var button = data.switch;
         var floor = data.floor;
         var status = data.status;
-        var block = $("#"+button+"-"+floor);
+        var block = $('#'+button+'-'+floor);
         if(status == 1){
             block.removeClass('btn-danger');
             block.addClass('btn-success');
@@ -19,24 +19,24 @@ $(document).ready(function () {
             $('html, body').animate({
                 scrollTop: (block.offset().top)
             },1500);
-            var message = "In Floor "+floor+" machine "+button+" shows Problem";
+            var message = 'In Floor '+floor+' machine '+button+' shows Problem';
             toastr.error(message);
             toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": 0,
-                "extendedTimeOut": 0,
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
+                'closeButton': true,
+                'debug': false,
+                'newestOnTop': false,
+                'progressBar': false,
+                'positionClass': 'toast-top-right',
+                'preventDuplicates': false,
+                'onclick': null,
+                'showDuration': '300',
+                'hideDuration': '1000',
+                'timeOut': 0,
+                'extendedTimeOut': 0,
+                'showEasing': 'swing',
+                'hideEasing': 'linear',
+                'showMethod': 'fadeIn',
+                'hideMethod': 'fadeOut'
             }
         }
 
