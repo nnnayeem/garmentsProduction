@@ -70,7 +70,7 @@
                         <table>
                             <tr>
                                 <td><span class="font glyphicon glyphicon-stats"></span></td>
-                                <td><span>Net Production:</span><br><span id="production">{{$totalProduction}}</span></td>
+                                <td><span>Production:</span><br><span id="production">{{$totalProduction}}</span></td>
                             </tr>
                         </table>
 
@@ -193,7 +193,7 @@
                 }
                 vlu = parseInt(s.html());
                 s.html(vlu + 1);
-                
+
                 if(type === 'g'){
                     grn = parseInt($("#green").html());
                     blc = $("#balance");

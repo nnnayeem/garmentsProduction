@@ -21,17 +21,12 @@
   <component name="ChangeListManager">
     <list default="true" id="95cfa2a3-b111-4114-aa38-ac58876741d1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/garmentsProduction.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/garmentsProduction.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Events/SwitchPressed.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/SwitchPressed.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/FloorsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/FloorsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PlatformController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PlatformController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PlatformControllerOld.php.old" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/MController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/MController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/machine.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/machine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/floors/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/floors/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/production.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/production.blade.php" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,9 +34,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -161,6 +154,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -172,25 +166,13 @@
       <recent name="D:\website_development\environmnt\laragon\www\garmentsProduction" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -210,46 +192,25 @@
       <workItem from="1606791750097" duration="302000" />
       <workItem from="1606839346602" duration="593000" />
       <workItem from="1607004006228" duration="47000" />
-      <workItem from="1608446496014" duration="972000" />
+      <workItem from="1608446496014" duration="2675000" />
+      <workItem from="1609321528098" duration="5491000" />
+      <workItem from="1609346141905" duration="387000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="734" y="362" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606498662780">
-      <screen x="0" y="40" width="1920" height="1040" />
-    </state>
-    <state x="734" y="362" key="#com.intellij.fileTypes.FileTypeChooser/0.40.1920.1040@0.40.1920.1040" timestamp="1606498662780" />
-    <state x="740" y="315" key="FileChooserDialogImpl" timestamp="1607004055121">
-      <screen x="0" y="40" width="1920" height="1040" />
-    </state>
-    <state x="740" y="315" key="FileChooserDialogImpl/0.40.1920.1040@0.40.1920.1040" timestamp="1607004055121" />
-    <state x="461" y="205" key="SettingsEditor" timestamp="1606622039082">
-      <screen x="0" y="40" width="1920" height="1040" />
-    </state>
-    <state x="461" y="205" key="SettingsEditor/0.40.1920.1040@0.40.1920.1040" timestamp="1606622039082" />
-    <state x="0" y="40" width="1369" height="1027" key="dock-window-1" timestamp="1606759496295">
-      <screen x="0" y="40" width="1920" height="1040" />
-    </state>
-    <state x="0" y="40" width="1369" height="1027" key="dock-window-1/0.40.1920.1040@0.40.1920.1040" timestamp="1606759496295" />
-    <state x="623" y="265" width="672" height="678" key="search.everywhere.popup" timestamp="1606742565271">
-      <screen x="0" y="40" width="1920" height="1040" />
-    </state>
-    <state x="623" y="265" width="672" height="678" key="search.everywhere.popup/0.40.1920.1040@0.40.1920.1040" timestamp="1606742565271" />
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

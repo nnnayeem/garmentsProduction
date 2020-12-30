@@ -32,13 +32,13 @@
 </div><div class="form-group {{ $errors->has('start_date') ? 'has-error' : ''}}">
     {!! Form::label('start_date', 'Startind Date', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::input('datetime-local', 'start_date', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+        {!! Form::input('datetime', 'start_date', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
         {!! $errors->first('start_date', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('ending_date') ? 'has-error' : ''}}">
     {!! Form::label('ending_date', 'Ending Date', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::input('datetime-local', 'ending_date', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+        {!! Form::input('datetime', 'ending_date', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
         {!! $errors->first('ending_date', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
