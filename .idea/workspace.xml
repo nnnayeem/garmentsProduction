@@ -21,11 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="95cfa2a3-b111-4114-aa38-ac58876741d1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/garmentsProduction.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/garmentsProduction.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/FloorsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/FloorsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PlatformController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PlatformController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/production.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/production.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,6 +147,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1ksieKN7fu3pd9pnVT4KakVq8pB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -156,14 +156,21 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tree/Packages/nnnayeem/CrudGenerator/src/assets" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\website_development\environmnt\laragon\www\tree\Packages\nnnayeem\CrudGenerator\src\assets" />
+      <recent name="D:\website_development\environmnt\laragon\www\tree\Packages\nnnayeem\CrudGenerator" />
+      <recent name="D:\website_development\environmnt\laragon\www\tree\Packages\nnnayeem\CrudGenerator\src" />
       <recent name="D:\website_development\environmnt\laragon\www\garmentsProduction" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\website_development\environmnt\laragon\www\tree\Packages\nnnayeem\CrudGenerator\config" />
+      <recent name="D:\website_development\environmnt\laragon\www\tree\Packages\nnnayeem\CrudGenerator" />
     </key>
   </component>
   <component name="RunManager">
@@ -194,7 +201,7 @@
       <workItem from="1607004006228" duration="47000" />
       <workItem from="1608446496014" duration="2675000" />
       <workItem from="1609321528098" duration="5491000" />
-      <workItem from="1609346141905" duration="387000" />
+      <workItem from="1609346141905" duration="8971000" />
     </task>
     <servers />
   </component>
@@ -206,7 +213,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

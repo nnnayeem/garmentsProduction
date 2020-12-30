@@ -6,6 +6,7 @@ use App\Events\SwitchPressed;
 use App\Machine;
 use App\MController;
 use App\Platform;
+use App\Services\DevicePlatform;
 use App\Switche;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,29 +32,15 @@ class PlatformController extends Controller
 
         $data = $input['data'];
 
+
         try{
             foreach ($data as $factoryControllerData) {
                 $factoryControllerData = explode('>', $factoryControllerData);
-                if (sizeof($factoryControllerData) == 2) {
-                    $controllerData = $factoryControllerData[0];
-                    $switchNo = $factoryControllerData[1];
 
-                    $controllerData = explode(':', $controllerData);
-                    $ip = $controllerData[0];
-                    $status = $controllerData[1];
-
-                    $controller = MController::with('floor')->where('ip', $ip)->first();
-                    if (!empty($controller)) {
-                        $rowNo = $controller->line_no;
-                        $floor = $controller->floor;
-                        if (!empty($floor)) {
-                            $machinePerRow = $floor->machinePerRow;
-                            $originalSwitchNo = (int)$machinePerRow * ((int)$rowNo - 1) + $switchNo;
-                            $this->callingMechanic($floor, $originalSwitchNo, $status);
-                        }
-                    }
-
-
+                $extractedData = DevicePlatform::ExtractDataFromControllerIncomingData($factoryControllerData);
+//                $extractedData = [];
+                if(!empty($extractedData)){
+                    $this->callingMechanic($extractedData['floor'], $extractedData['originalSwitchNo'], $extractedData['status']);
                 }
 
             }
@@ -62,7 +49,10 @@ class PlatformController extends Controller
             ];
         }catch (\Exception $e){
             return [
-                "status" => 200
+                "status" => 200,
+                "meta" => [
+                    'errorMessage' => $e->getMessage()
+                ]
             ];
         }
 
@@ -106,7 +96,7 @@ class PlatformController extends Controller
         if (!empty($data)) {
             $switchStatus = $data->status;
 
-/*
+        /*
             original status 1:
 	            switch status 1: indicating something wrong		>call mechanic
 	            switch status 0: indicating machine status fine	>no action needed
@@ -114,7 +104,7 @@ class PlatformController extends Controller
             original status 0:
 	            switch status 1: indicating something wrong		>no action needed
 	            switch status 0: indicating machine repaired	>call mechanic
-*/
+        */
 
             switch($switchStatus){
                 case 1:
@@ -133,7 +123,7 @@ class PlatformController extends Controller
             }
 
 
-//            Toggle the status of the switch
+            //Toggle the status of the switch
             $data->update(['status' => !$status, 'checked' => 0]);
             event(new SwitchPressed($floor->floor, $switch, !$status));
 
