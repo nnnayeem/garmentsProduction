@@ -13,10 +13,10 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name')->nullable();
-            $table->integer('buyer_id')->nullable()->unsigned()->index();
-            $table->integer('qty')->nullable();
+            $table->bigInteger('buyer_id')->nullable()->unsigned()->index();
+            $table->integer('qty')->unsigned()->nullable();
             $table->timestamp('ending_date')->nullable();
             $table->timestamps();
             });

@@ -13,12 +13,12 @@ class CreateStoresTable extends Migration
     public function up()
     {
         Schema::create('stores', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->timestamps();
-            $table->integer('machine_category_id')->nullable()->index();
+            $table->bigInteger('machine_category_id')->unsigned()->nullable()->index();
             $table->string('type')->nullable()->index();
-            $table->integer('qty')->nullable()->index();
-            $table->integer('price')->nullable()->index();
+            $table->integer('qty')->nullable()->unsigned()->index();
+            $table->integer('price')->nullable()->unsigned()->index();
             });
     }
 

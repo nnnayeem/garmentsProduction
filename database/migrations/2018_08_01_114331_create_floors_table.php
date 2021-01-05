@@ -13,12 +13,12 @@ class CreateFloorsTable extends Migration
     public function up()
     {
         Schema::create('floors', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->timestamps();
             $table->string('floor',20)->nullable();
             $table->string('title',191)->nullable();
-            $table->integer('rows')->nullable()->default(4);
-            $table->integer('machinePerRow')->nullable()->default(4);
+            $table->integer('rows')->nullable()->unsigned()->default(4);
+            $table->integer('machinePerRow')->nullable()->unsigned()->default(4);
             });
     }
 

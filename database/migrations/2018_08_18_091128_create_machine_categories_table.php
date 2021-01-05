@@ -13,10 +13,10 @@ class CreateMachineCategoriesTable extends Migration
     public function up()
     {
         Schema::create('machine_categories', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->timestamps();
             $table->string('category')->nullable()->index();
-            $table->integer('subMachineCategory')->nullable()->index();
+            $table->integer('subMachineCategory')->nullable()->unsigned()->index();
             });
     }
 

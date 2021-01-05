@@ -14,7 +14,7 @@ class AddColmnUserIdBuyersTable extends Migration
     public function up()
     {
         Schema::table('buyers', function (Blueprint $table) {
-            $table->integer('user_id')->default(0)->nullable()->index();
+            $table->bigInteger('user_id')->default(0)->nullable()->index();
         });
     }
 

@@ -13,9 +13,9 @@ class CreateTargetsTable extends Migration
     public function up()
     {
         Schema::create('targets', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('order_id')->nullable()->index();
-            $table->integer('floor_id')->nullable()->index();
+            $table->bigIncrements('id');
+            $table->bigInteger('order_id')->unsigned()->nullable()->index();
+            $table->bigInteger('floor_id')->unsigned()->nullable()->index();
             $table->integer('line')->nullable()->index();
             $table->integer('target')->nullable();
             $table->timestamps();

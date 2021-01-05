@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AdColsToOrdersProduction extends Migration
+class AddTotalSwitchMControllersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AdColsToOrdersProduction extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->bigInteger('production')->nullable()->unsigned()->default(0);
+        Schema::table('m_controllers', function (Blueprint $table) {
+            $table->tinyInteger('total_switch')->unsigned()->default(0);
+            $table->tinyInteger('production_switch_start_at')->unsigned()->default(0);
         });
     }
 
@@ -25,7 +26,7 @@ class AdColsToOrdersProduction extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
+        Schema::table('m_controllers', function (Blueprint $table) {
             //
         });
     }

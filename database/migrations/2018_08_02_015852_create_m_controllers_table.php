@@ -13,9 +13,9 @@ class CreateMControllersTable extends Migration
     public function up()
     {
         Schema::create('m_controllers', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('serial');
-            $table->integer('floor_id')->nullable()->index();
+            $table->bigInteger('floor_id')->nullable()->unsigned()->index();
             $table->timestamps();
             });
     }

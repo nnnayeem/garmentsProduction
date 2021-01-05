@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlatformsTable extends Migration
+class CreateProductionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreatePlatformsTable extends Migration
      */
     public function up()
     {
-        Schema::create('platforms', function (Blueprint $table) {
+        Schema::create('productions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('floor')->nullable()->unsigned()->index();
-            $table->integer('switch')->nullable()->unsigned()->index();
-            $table->integer('controller_token')->nullable();
             $table->timestamps();
+            $table->bigInteger('switch_id');
+            $table->bigInteger('employee_id');
         });
     }
 
@@ -29,6 +28,6 @@ class CreatePlatformsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('platforms');
+        Schema::dropIfExists('productions');
     }
 }

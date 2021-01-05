@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\CountHourlyProduction;
 use App\Events\CountProduction;
+use App\Events\ProcessProductionPlatform;
 use App\Target;
 use App\TargetHourlyDetail;
 use App\Floor;
@@ -33,11 +34,14 @@ class ProductionController extends Controller
         event(new CountProduction('RealTime',$floor,$line,$day,$type));
         return 201;
     }
-    public function countpost(Request $request){
+    public function countInspectedProducts(Request $request){
         $day = date('Y-m-d');
         $floor = $request->floor;
         $line = $request->line;
         $type = $request->type;
+
+//        event(new ProcessProductionPlatform($request->all()));
+
         if(!is_null($floor) && !is_null($line) && !is_null($type))
         {
             event(new CountProduction('RealTime',$floor,$line,$day,$type));
@@ -62,7 +66,7 @@ class ProductionController extends Controller
     public function SortProduction(Request $request){
         $floor  = $request->floor;
         $line   = $request->line;
-        $date   = $request->date; 
+        $date   = $request->date;
 
         $data = [];
         for($i=0;$i<=23;$i++){
@@ -84,14 +88,14 @@ class ProductionController extends Controller
                 $start = $item->start_time;
                 $split = explode(':', $start);
                 $time = array_first($split);
-                $data[$time][$line] = $item; 
+                $data[$time][$line] = $item;
                 }
             }
-            
+
         }
         return view('admin.production.showDetails',compact('data','floor','line','date'));
 
-    }   
+    }
 
     public function countHourly(){
         event(new CountHourlyProduction());

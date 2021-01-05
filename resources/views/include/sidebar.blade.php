@@ -50,6 +50,22 @@
             </li>
             @endcan
 
+            <li class="{{Request::is('admin/employees*')?'active ':''}}treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>Employees</span>
+                    <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li{!! Request::is('admin/employees')?' class="active"':'' !!}><a href="/admin/employees"><i class="fa fa-users"></i> Manage Employees</a></li>
+                    @can('create employees')
+                        <li{!! Request::is('admin/employees/create')?' class="active"':'' !!}><a href="/admin/employees/create"><i class="fa  fa-user-plus"></i> Create Employees</a></li>
+                    @endcan
+                </ul>
+            </li>
+
 
 
             @can('view permission')
@@ -207,7 +223,7 @@
                 </a>
             </li>
             @endcan
-            
+
             @can('view store')
             <li class="{{Request::is('admin/store*')?'active ':''}}treeview">
                 <a href="#">

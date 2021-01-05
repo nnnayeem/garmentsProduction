@@ -28,6 +28,9 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\BroadcastHourlyReport::class => [
             \App\Handlers\Events\BroadcastHourlyReportHandler::class,
         ],
+        \App\Events\ProcessProductionPlatform::class => [
+            \App\Handlers\Events\ProcessIncomingProductionDataForPlatform::class,
+        ],
     ];
 
     /**

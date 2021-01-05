@@ -238,6 +238,7 @@
 
 
 <script src="{{asset('bower_resources/jquery/dist/jquery.min.js')}}"></script>
+
 <script src="{{asset('bower_resources/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 @yield('script')
 

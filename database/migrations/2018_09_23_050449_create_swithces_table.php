@@ -14,9 +14,9 @@ class CreateSwithcesTable extends Migration
     public function up()
     {
         Schema::create('switches', function (Blueprint $table) {
-            $table->increments('id')->index();
-            $table->integer('floor_id');
-            $table->integer('switch')->index();
+            $table->bigIncrements('id')->index();
+            $table->bigInteger('floor_id');
+            $table->integer('switch')->unsigned()->index();
             $table->boolean('status')->index()->nullable()->default(1);
             $table->boolean('checked')->index()->nullable()->default(1);
             $table->timestamps();

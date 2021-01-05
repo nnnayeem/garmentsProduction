@@ -13,10 +13,10 @@ class CreateAccessoriesesTable extends Migration
     public function up()
     {
         Schema::create('accessorieses', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name')->nullable();
-            $table->integer('order_id')->nullable()->unsigned()->index();
-            $table->integer('qty')->nullable();
+            $table->bigInteger('order_id')->nullable()->unsigned()->index();
+            $table->integer('qty')->unsigned()->nullable();
             $table->string('unit',255)->nullable();
             $table->timestamps();
             });

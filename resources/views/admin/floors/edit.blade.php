@@ -38,12 +38,18 @@
             border-bottom: 1px solid #ddd;
         }
 
-        .secondary-table-normal-field{
+        .secondary-table-normal-field-action{
             width: 100px;
+        }
+        .secondary-table-normal-field{
+            width: 50px;
         }
 
         .secondary-table-input-field{
-            width: 200px;
+            width: 100px;
+        }
+        .secondary-table-input-field input[type=text]{
+            width: 90%;
         }
 
     </style>
@@ -117,8 +123,8 @@
 
             <div class="box-body">
                 <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
+{{--                    <div class="col-md-2"></div>--}}
+                    <div class="col-md-12">
 
                         @if ($errors->any())
                             <ul class="alert alert-danger">
@@ -147,50 +153,67 @@
                                                 {{--                                        <form action="{{url('controllers/'+$controller->id+'/edit')}}" method="POST" accept-charset="UTF-8">--}}
                                                 <input type="hidden" name="_method" value="PATCH">
                                                 @csrf
-                                                <table class="secondary-table">
-                                                    @if($loop->index == 0)
-                                                        <thead>
+                                                <div class="table-responsive">
+                                                    <table class="secondary-table">
+                                                        @if($loop->index == 0)
+                                                            <thead>
+                                                            <tr>
+                                                                <th class="secondary-table-normal-field secondary-table-head">
+                                                                    Row No
+                                                                </th>
+                                                                <th class="secondary-table-normal-field secondary-table-head">
+                                                                    Row Title
+                                                                </th>
+                                                                <th class="secondary-table-normal-field secondary-table-head">
+                                                                    Floor Title
+                                                                </th>
+                                                                <th class="secondary-table-input-field secondary-table-head">
+                                                                    Controller Serial
+                                                                </th>
+                                                                <th class="secondary-table-input-field secondary-table-head">
+                                                                    Controller IP
+                                                                </th>
+                                                                <th class="secondary-table-input-field secondary-table-head">
+                                                                    Total Switch
+                                                                </th>
+                                                                <th class="secondary-table-input-field secondary-table-head">
+                                                                    Production Switch Start At
+                                                                </th>
+                                                                <th class="secondary-table-normal-field-action secondary-table-head">
+                                                                    Action
+                                                                </th>
+                                                            </tr>
+                                                            </thead>
+                                                        @endif
                                                         <tr>
-                                                            <th class="secondary-table-normal-field secondary-table-head">
-                                                                Row No
-                                                            </th>
-                                                            <th class="secondary-table-normal-field secondary-table-head">
-                                                                Row Title
-                                                            </th>
-                                                            <th class="secondary-table-normal-field secondary-table-head">
-                                                                Floor Title
-                                                            </th>
-                                                            <th class="secondary-table-input-field secondary-table-head">
-                                                                Controller Serial
-                                                            </th>
-                                                            <th class="secondary-table-input-field secondary-table-head">
-                                                                Controller IP
-                                                            </th>
-                                                            <th class="secondary-table-normal-field secondary-table-head">
-                                                                Action
-                                                            </th>
+                                                            <td class="secondary-table-normal-field">
+                                                                No {{$controller->line_no}}
+                                                            </td>
+                                                            <td class="secondary-table-normal-field">
+                                                                No {{$controller->line_title}}
+                                                            </td>
+                                                            <td class="secondary-table-normal-field">{{$floor->title}}</td>
+                                                            <td class="secondary-table-input-field">
+                                                                <input type="text" class="form-control" value="{{$controller->serial}}" name="serial">
+                                                            </td>
+                                                            <td class="secondary-table-input-field">
+                                                                <input type="text" class="form-control" value="{{$controller->ip}}" name="ip">
+                                                            </td>
+                                                            <td class="secondary-table-input-field">
+                                                                <input type="number" class="form-control" value="{{$controller->total_switch}}" name="total_switch">
+                                                            </td>
+                                                            <td class="secondary-table-input-field">
+                                                                <input type="number" class="form-control" value="{{$controller->production_switch_start_at}}" name="production_switch_start_at">
+                                                            </td>
+                                                            <td class="secondary-table-normal-field-action">
+                                                                <input type="submit" class="btn btn-success" value="Update Controller ">
+                                                                <!-- Large modal -->
+{{--                                                                <button type="button" class="btn btn-primary" onclick="openControllerConfigurationModal()">Configure Controller</button>--}}
+
+                                                            </td>
                                                         </tr>
-                                                        </thead>
-                                                    @endif
-                                                    <tr>
-                                                        <td class="secondary-table-normal-field">
-                                                            No {{$controller->line_no}}
-                                                        </td>
-                                                        <td class="secondary-table-normal-field">
-                                                            No {{$controller->line_title}}
-                                                        </td>
-                                                        <td class="secondary-table-normal-field">{{$floor->title}}</td>
-                                                        <td class="secondary-table-input-field">
-                                                            <input type="text" class="form-control" value="{{$controller->serial}}" name="serial">
-                                                        </td>
-                                                        <td class="secondary-table-input-field">
-                                                            <input type="text" class="form-control" value="{{$controller->ip}}" name="ip">
-                                                        </td>
-                                                        <td class="secondary-table-normal-field">
-                                                            <input type="submit" class="btn btn-success" value="Update Controller ">
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                                    </table>
+                                                </div>
                                             </form>
                                         </td>
                                     </tr>
@@ -213,6 +236,25 @@
             </div>
 
         </div>
+
+
+        <div class="modal fade controller-configuration" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>One fine body&hellip;</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
 
     </section>
@@ -242,6 +284,19 @@
             'info': true,
             'autoWidth': false,
         });
+
+        function openControllerConfigurationModal()
+        {
+            $('.controller-configuration').modal('show')
+        }
+
+
+        function hideControllerConfigurationModal()
+        {
+            $('.controller-configuration').modal('hide')
+
+        }
+
 
     </script>
 

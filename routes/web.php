@@ -24,8 +24,7 @@ Route::view('/admin','admin.dashboard')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/platform','Admin\\PlatformController@postRequest');
-Route::get('/platform/{floor}/{switch}/{status}','Admin\\PlatformController@callMechanic');
+Route::post('/platform','Admin\\PlatformController@callMechanic');
 
 Route::get("admin/{id}/floorDetails","Admin\\FloorsController@FloorDetails")->name('floorDetails');
 Route::get('admin/machines/setSwitch/{floor_id}/{switch}','Admin\\MachinesController@setMachineView');
@@ -35,7 +34,7 @@ Route::get('/floors','FrontController@index');//Will SHOW THE PAGE WITH MACHINES
 
 Route::get('/production/{floor}/{line}','ProductionController@index');
 Route::get('/production/{floor}/{line}/{type}/count','ProductionController@countget');
-Route::post('/production/count','ProductionController@countpost');
+Route::post('/production/countInspectedProducts','ProductionController@countInspectedProducts');
 Route::get('/production/countHourly','ProductionController@countHourly');
 Route::post('/production/countHourly','ProductionController@countHourlyPost');
 
@@ -83,7 +82,10 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/general-store/{id}', 'Admin\\GeneralStoreController@deliver');
         Route::get('/production', 'ProductionController@show');
         Route::post('/production', 'ProductionController@SortProduction')->name('production.SortProduction');
-
+        Route::resource('/employees', 'Admin\\EmployeeController');
+        Route::post('/employees/{id}/setEmployeeToSwitch', 'Admin\\EmployeeController@setEmployeeToSwitch');
+        Route::get('/employees/{id}/EmployeeDailyTaskDoneReport', 'Admin\\EmployeeController@EmployeeDailyTaskDoneReport')->name('EmployeeDailyTaskDoneReport');
+        Route::get('/employees/{id}/EmployeeMonthlyTaskDoneReport', 'Admin\\EmployeeController@EmployeeMonthlyTaskDoneReport')->name('EmployeeMonthlyTaskDoneReport');
 
         Route::middleware('AccessoriesMiddleware')->group(function(){
             Route::resource('/accessorieses', 'Admin\\AccessoriesesController')->only('store');

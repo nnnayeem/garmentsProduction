@@ -13,10 +13,10 @@ class CreateRequestPlatformsTable extends Migration
     public function up()
     {
         Schema::create('request_platforms', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('machine_category_id')->nullable()->index();
-            $table->integer('machine_id')->nullable()->index();
-            $table->integer('parts_id')->nullable()->index();
+            $table->bigIncrements('id');
+            $table->bigInteger('machine_category_id')->nullable()->unsigned()->index();
+            $table->bigInteger('machine_id')->nullable()->unsigned()->index();
+            $table->bigInteger('parts_id')->nullable()->unsigned()->index();
             $table->string('partsName')->nullable()->index();
             $table->boolean('approved')->nullable()->index()->default(0);
             $table->boolean('deliver')->nullable()->index()->default(0);

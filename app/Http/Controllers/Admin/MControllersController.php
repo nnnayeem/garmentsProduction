@@ -106,7 +106,11 @@ class MControllersController extends Controller
         $rules = [
             'serial'=>'required|unique:m_controllers,serial,'.$id,
             'ip'=>'required|max:40|unique:m_controllers,ip,'.$id,
+            'total_switch' => 'required|digits_between:0,3|integer|max:100',
+            'production_switch_start_at' => 'required|digits_between:0,3|integer|max:100'
         ];
+
+
 
         $message = [
 

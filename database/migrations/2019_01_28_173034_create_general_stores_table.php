@@ -13,11 +13,11 @@ class CreateGeneralStoresTable extends Migration
     public function up()
     {
         Schema::create('general_stores', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('order_id')->unsigned()->nullable()->index();
+            $table->bigIncrements('id');
+            $table->bigInteger('order_id')->unsigned()->nullable()->index();
             $table->integer('accessoriese_id')->unsigned()->nullable()->index();
-            $table->integer('user_id')->unsigned()->nullable()->index();
-            $table->integer('qty')->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable()->index();
+            $table->integer('qty')->unsigned()->nullable();
             $table->timestamp('delivered')->nullable();
             $table->timestamps();
             });

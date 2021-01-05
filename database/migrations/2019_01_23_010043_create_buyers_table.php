@@ -13,7 +13,7 @@ class CreateBuyersTable extends Migration
     public function up()
     {
         Schema::create('buyers', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name',255)->nullable();
             $table->string('email',255)->nullable();
             $table->string('country',255)->nullable();

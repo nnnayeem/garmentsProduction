@@ -15,11 +15,11 @@ class CreateMachinesTable extends Migration
         Schema::create('machines', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('switch')->nullable()->index();
-            $table->integer('floor_id')->nullable()->index();
+            $table->bigInteger('floor_id')->nullable()->unsigned()->index();
             $table->string('machine_token')->nullable()->index();
             $table->tinyInteger('status')->nullable()->index();
-            $table->integer('machine_category_id')->nullable()->index();
-            $table->integer('store_id')->nullable()->index();
+            $table->bigInteger('machine_category_id')->nullable()->unsigned()->index();
+            $table->bigInteger('store_id')->nullable()->unsigned()->index();
             $table->timestamps();
             });
     }

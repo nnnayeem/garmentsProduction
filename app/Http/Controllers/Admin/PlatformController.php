@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\ProcessProductionPlatform;
 use App\Events\SwitchPressed;
 use App\Machine;
 use App\MController;
 use App\Platform;
+use App\ProductionPlatform;
 use App\Services\DevicePlatform;
 use App\Switche;
 use Illuminate\Http\Request;
@@ -26,8 +28,22 @@ class PlatformController extends Controller
     }
 
 
-    public function postRequest(Request $request)
+    public function callMechanic(Request $request)
     {
+        /*
+         * Data Structure
+         * device_ip:switch_status>device_switch_no
+         * Example:
+         * data:
+         *[
+         *      "device_ip:switch_status>device_switch_no",
+         *      "device_ip:switch_status>device_switch_no",
+         *      "device_ip:switch_status>device_switch_no",
+         *      ..........................................
+         * ]
+        */
+
+
         $input = $request->all();
 
         $data = $input['data'];
@@ -38,9 +54,10 @@ class PlatformController extends Controller
                 $factoryControllerData = explode('>', $factoryControllerData);
 
                 $extractedData = DevicePlatform::ExtractDataFromControllerIncomingData($factoryControllerData);
-//                $extractedData = [];
-                if(!empty($extractedData)){
+                if(!empty($extractedData) && !$extractedData['is_production_switch']){
                     $this->callingMechanic($extractedData['floor'], $extractedData['originalSwitchNo'], $extractedData['status']);
+                }elseif(!empty($extractedData) && $extractedData['is_production_switch']){
+                    $this->countProduction($extractedData);
                 }
 
             }
@@ -51,41 +68,11 @@ class PlatformController extends Controller
             return [
                 "status" => 200,
                 "meta" => [
-                    'errorMessage' => $e->getMessage()
+                    'errorMessage' => config('app.env') == 'local'?$e->getMessage():"Unknown Error Occurred"
                 ]
             ];
         }
 
-    }
-
-
-
-
-    public function callMechanic($floor, $switch, $status)
-    {
-        $data = Switche::where('floor_id', $floor)->where('switch', $switch)->first();
-
-        if ($data) {
-            if (!$data->status == 0) {
-                if ($status == 0) {
-                    Platform::create(['floor' => $floor, 'switch' => $switch]);
-                }
-
-
-            } elseif ($data->status == 0) {
-                if ($status == 1) {
-                    $plaPlatform = Platform::where('floor', $floor)->where('switch', $switch)->orderBy('created_at', 'desc')->first();
-                    if ($plaPlatform) {
-                        $plaPlatform->update(['end_time' => now()]);
-                    }
-                }
-
-            }
-            $data->update(['status' => $status, 'checked' => 0]);
-            event(new SwitchPressed($floor, $switch, $status));
-
-        }
-        return;
     }
 
 
@@ -136,6 +123,12 @@ class PlatformController extends Controller
         return [
             'status' => 200
         ];
+    }
+
+    public function countProduction($extractedData)
+    {
+
+        event(new ProcessProductionPlatform($extractedData));
     }
 
 }

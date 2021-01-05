@@ -14,7 +14,6 @@
     {!! Form::label('buyer_id', 'Buyer Id', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::select('buyer_id', [0=>'Select Buyer']+$buyers, null,['class' => 'form-control']) !!}
-{{--        {!! Form::number('buyer_id', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}--}}
         {!! $errors->first('buyer_id', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('qty') ? 'has-error' : ''}}">

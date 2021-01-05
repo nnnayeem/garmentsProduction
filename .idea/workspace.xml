@@ -20,8 +20,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95cfa2a3-b111-4114-aa38-ac58876741d1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/garmentsProduction.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/garmentsProduction.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/MControllersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/MControllersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PlatformController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PlatformController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/MController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/MController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/DevicePlatform.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/DevicePlatform.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Switche.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Switche.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2018_08_01_112951_create_platforms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_08_01_112951_create_platforms_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2018_08_01_114331_create_floors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_08_01_114331_create_floors_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2018_08_02_015852_create_m_controllers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_08_02_015852_create_m_controllers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2018_08_02_103122_create_machines_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_08_02_103122_create_machines_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2018_08_18_091128_create_machine_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_08_18_091128_create_machine_categories_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2018_08_18_094004_create_stores_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_08_18_094004_create_stores_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2018_09_15_054420_create_Parts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_09_15_054420_create_Parts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2018_09_15_062533_create_posts_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2018_09_15_062832_create_request_platforms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_09_15_062832_create_request_platforms_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2018_09_23_050449_create_swithces_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2018_09_23_050449_create_swithces_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_01_23_010043_create_buyers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_01_23_010043_create_buyers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_01_23_011457_create_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_01_23_011457_create_orders_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_01_23_022912_create_accessorieses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_01_23_022912_create_accessorieses_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_01_28_173034_create_general_stores_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_01_28_173034_create_general_stores_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_02_16_021439_create_targets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_02_16_021439_create_targets_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_02_21_121557_create_target_details_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_02_21_121557_create_target_details_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_02_21_223002_create_target_hourly_details_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_02_21_223002_create_target_hourly_details_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_02_23_203327_ad_cols_to_orders_production.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_02_23_203327_ad_cols_to_orders_production.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_20_195650_add_colmn_user_id_buyers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_03_20_195650_add_colmn_user_id_buyers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/floors/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/floors/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/orders/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/include/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/include/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +184,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1ksieKN7fu3pd9pnVT4KakVq8pB" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -153,22 +195,31 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tree/Packages/nnnayeem/CrudGenerator/src/assets" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Services" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\website_development\environmnt\laragon\www\garmentsProduction\app\Services" />
+      <recent name="D:\website_development\environmnt\laragon\www\garmentsProduction\resources\views\admin" />
+      <recent name="D:\website_development\environmnt\laragon\www\tree\Packages\nnnayeem\crud_generator\assets" />
+      <recent name="D:\website_development\environmnt\laragon\www\tree\Packages\nnnayeem\crud_generator\src" />
       <recent name="D:\website_development\environmnt\laragon\www\tree\Packages\nnnayeem\CrudGenerator\src\assets" />
-      <recent name="D:\website_development\environmnt\laragon\www\tree\Packages\nnnayeem\CrudGenerator" />
-      <recent name="D:\website_development\environmnt\laragon\www\tree\Packages\nnnayeem\CrudGenerator\src" />
-      <recent name="D:\website_development\environmnt\laragon\www\garmentsProduction" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\website_development\environmnt\laragon\www\garmentsProduction\app\Handlers\Events" />
+      <recent name="D:\website_development\environmnt\laragon\www\tree\Packages\nnnayeem\crud_generator\src" />
+      <recent name="D:\website_development\environmnt\laragon\www\tree\Packages\nnnayeem\crud_generator" />
       <recent name="D:\website_development\environmnt\laragon\www\tree\Packages\nnnayeem\CrudGenerator\config" />
       <recent name="D:\website_development\environmnt\laragon\www\tree\Packages\nnnayeem\CrudGenerator" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="php artisan" />
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -198,7 +249,16 @@
       <workItem from="1607004006228" duration="47000" />
       <workItem from="1608446496014" duration="2675000" />
       <workItem from="1609321528098" duration="5491000" />
-      <workItem from="1609346141905" duration="15674000" />
+      <workItem from="1609346141905" duration="17773000" />
+      <workItem from="1609387860511" duration="15777000" />
+      <workItem from="1609473621605" duration="1451000" />
+      <workItem from="1609560996388" duration="12188000" />
+      <workItem from="1609610473596" duration="9317000" />
+      <workItem from="1609672161404" duration="3444000" />
+      <workItem from="1609746036146" duration="595000" />
+      <workItem from="1609759503127" duration="12213000" />
+      <workItem from="1609813172556" duration="4669000" />
+      <workItem from="1609870124287" duration="4166000" />
     </task>
     <servers />
   </component>

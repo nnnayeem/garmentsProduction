@@ -13,10 +13,10 @@ class CreatePartsTable extends Migration
     public function up()
     {
         Schema::create('Parts', function (Blueprint $table) {
-            $table->increments('id')->index();
-            $table->integer('machine_category_id')->index()->nullable()->default(0);
+            $table->bigIncrements('id')->index();
+            $table->bigInteger('machine_category_id')->index()->nullable()->unsigned()->default(0);
             $table->string('parts')->index()->nullable()->default(0);
-            $table->integer('qty')->nullable();
+            $table->integer('qty')->unsigned()->nullable();
             $table->timestamps();
             });
     }
